@@ -50,7 +50,6 @@ class LengthBetweenTest extends AbstractTestCase
         $this->assertEquals('test', $assertion->getName());
         $this->assertEquals('custom message', $assertion->getMessage());
 
-
         $this->setExpectedException('InvalidArgumentException');
 
         new LengthBetween('test', 4, 2);

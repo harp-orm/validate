@@ -88,7 +88,7 @@ class EmailTest extends AbstractTestCase
         $assertion = new Email('test', Email::STRICT, 'custom message');
 
         $this->assertEquals('test', $assertion->getName());
-        $this->assertTrue($assertion->isStrict(), $assertion->getName());
+        $this->assertTrue($assertion->isStrict());
         $this->assertEquals('custom message', $assertion->getMessage());
     }
 }

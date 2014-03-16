@@ -11,64 +11,99 @@ use CL\Carpo\Error;
  */
 class URL extends AbstractAssertion
 {
+    public static function buildUrl($parts)
+    {
+        $url = '';
+
+        if (isset($parts['scheme'])) {
+            $url .= $parts['scheme'].'://';
+        }
+
+        if (isset($parts['user'])) {
+            if (isset($parts['pass'])) {
+                $url .= $parts['user'].':'.$parts['pass'].'@';
+            } else {
+                $url .= $parts['user'].'@';
+            }
+        }
+
+        if (isset($parts['host'])) {
+            $url .= $parts['host'];
+        }
+
+        if (isset($parts['port'])) {
+            $url .= ':'.$parts['port'];
+        }
+
+        if (isset($parts['path'])) {
+            $url .= $parts['path'];
+        }
+
+        if (isset($parts['query'])) {
+            $url .= '?'.$parts['query'];
+        }
+
+        if (isset($parts['fragment'])) {
+            $url .= '#'.$parts['fragment'];
+        }
+
+        return $url;
+    }
+
+    public static function convertUtfUrl($url)
+    {
+        $parts = parse_url($url);
+
+        if (extension_loaded('intl'))
+        {
+            if (isset($parts['host']))
+            {
+                $parts['host'] = idn_to_ascii($parts['host']);
+            }
+        }
+
+        if (isset($parts['path']))
+        {
+            $parts['path'] = implode('/', array_map('urlencode', explode('/', $parts['path'])));
+        }
+
+        if (isset($parts['query']))
+        {
+            parse_str($parts['query'], $query);
+
+            $parts['query'] = http_build_query($query);
+        }
+
+        return self::buildUrl($parts);
+    }
+
+    const STRICT = 1;
+
     protected $message = '%s should be a valid URL address';
+    protected $type;
+
+    public function __construct($name, $type = null, $message = null)
+    {
+        $this->type = $type;
+
+        parent::__construct($name, $message);
+    }
+
+    public function isStrict()
+    {
+        return $this->type == self::STRICT;
+    }
 
     public static function isValid($url)
     {
-        // Based on http://www.apps.ietf.org/rfc/rfc1738.html#sec-5
-        $expression = '~^
+        $url = self::convertUtfUrl($url);
 
-            # scheme
-            [-a-z0-9+.]++://
+        return self::isValidStrict($url);
+    }
 
-            # username:password (optional)
-            (?:
-                    [-a-z0-9$_.+!*\'(),;?&=%]++   # username
-                (?::[-a-z0-9$_.+!*\'(),;?&=%]++)? # password (optional)
-                @
-            )?
-
-            (?:
-                # ip address
-                \d{1,3}+(?:\.\d{1,3}+){3}+
-
-                | # or
-
-                # hostname (captured)
-                (
-                         (?!-)[-a-z0-9]{1,63}+(?<!-)
-                    (?:\.(?!-)[-a-z0-9]{1,63}+(?<!-)){0,126}+
-                )
-            )
-
-            # port (optional)
-            (?::\d{1,5}+)?
-
-            # path (optional)
-            (?:/.*)?
-
-            $~iDx';
-
-        if (! preg_match($expression, $url, $matches)) {
-            return false;
-        }
-
-        // We matched an IP address
-        if (! isset($matches[1])) {
-            return true;
-        }
-
-        // Check maximum length of the whole hostname
-        // http://en.wikipedia.org/wiki/Domain_name#cite_note-0
-        if (strlen($matches[1]) > 253) {
-            return false;
-        }
-
-        // An extra check for the top level domain
-        // It must start with a letter
-        $tld = ltrim(substr($matches[1], (int) strrpos($matches[1], '.')), '.');
-
-        return ctype_alpha($tld[0]);
+    public static function isValidStrict($url)
+    {
+        return filter_var($url, FILTER_VALIDATE_URL) !== false;
     }
 
     public function execute($object)
@@ -76,7 +111,8 @@ class URL extends AbstractAssertion
         if ($this->issetProperty($object))
         {
             $value = $this->getProperty($object);
-            if (! self::isValid($value))
+
+            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value)))
             {
                 return new Error($this->getMessage(), $this->getName());
             }
