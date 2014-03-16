@@ -14,9 +14,9 @@ class IPTest extends AbstractTestCase
     {
         return array(
             array('210.132.31.43', true),
-            array('210.132.31.4323', 'test should be a valid IP address'),
-            array('skfsldf', 'test should be a valid IP address'),
-            array('192.168.0.1', 'test should be a valid IP address'),
+            array('210.132.31.4323', 'test is invalid'),
+            array('skfsldf', 'test is invalid'),
+            array('192.168.0.1', 'test is invalid'),
         );
     }
 

@@ -49,11 +49,12 @@ class URLTest extends AbstractTestCase
                 array(
                     'scheme' => 'https',
                     'host' => 'www.example.com',
+                    'port' => '8882',
                     'path' => '/foo',
                     'query' => 'bar=10',
                     'fragment' => 'test',
                 ),
-                'https://www.example.com/foo?bar=10#test',
+                'https://www.example.com:8882/foo?bar=10#test',
             ),
         );
     }
@@ -145,6 +146,55 @@ class URLTest extends AbstractTestCase
     public function testIsValid($url, $expected)
     {
         $this->assertSame($expected, URL::isValid($url));
+    }
+
+    public function dataIsValidStrict()
+    {
+        return array(
+
+            // Strictly invalid
+            array('http://яндекс.рф', false),
+            array('http://foo.com/unicode_(✪)_in_parens', false),
+            array('http://foo.bar?q=Should allow spaces in query', false),
+
+            // Strictly valid
+            array('http://'.str_pad('example-', 70, 'a').'.com', true),
+            array('http://example.com', true),
+            array('http://www.example.com/test.html', true),
+            array('https://www.example.com/test.html', true),
+            array('bitcoin://www.example.com/test.html', true),
+            array('chrome://history', true),
+            array('http://user:pass@www.example.com', true),
+            array('http://user:@pass@www.example.com', true),
+            array('http://userid:password@example.com/', true),
+            array('http://user:pa:ss@www.example.com', true),
+            array('http://user@www.example.com', true),
+            array('http://142.42.1.1:8080/', true),
+            array('http://foo.com/blah_(wikipedia)#cite-1', true),
+            array('http://www.example.com/wpstyle/?p=364', true),
+            array('https://www.example.com/foo/?bar=baz&inga=42&quux', true),
+            array('http://foo.bar/?q=Test%20URL-encoded%20stuff', true),
+            array('ftp://example-example.co.uk', true),
+            array('ftp://90.190.32.12', true),
+            array('ftp://90.190.32.12/test.html', true),
+            array('http://'.str_pad('example-', 50, 'a').'.com', true),
+            array('http://">bla</a><script>alert(\'XSS\');</script>', false),
+            array('//', false),
+            array('http://#', false),
+            array('http:///', false),
+            array(':// should fail', false),
+            array('http://.www.foo.bar/', false),
+            array('http://.www.foo.bar./', false),
+        );
+    }
+
+    /**
+     * @dataProvider dataIsValidStrict
+     * @covers CL\Carpo\Assert\URL::isValidStrict
+     */
+    public function testIsValidStrict($url, $expected)
+    {
+        $this->assertSame($expected, URL::isValidStrict($url));
     }
 
     public function dataExecute()

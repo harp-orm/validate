@@ -14,11 +14,17 @@ class AssertsTest extends AbstractTestCase
 {
     /**
      * @covers CL\Carpo\Asserts::__construct
+     * @covers CL\Carpo\Asserts::all
+     * @covers CL\Carpo\Asserts::add
+     * @covers CL\Carpo\Asserts::set
      * @covers CL\Carpo\Asserts::next
      * @covers CL\Carpo\Asserts::current
      * @covers CL\Carpo\Asserts::valid
      * @covers CL\Carpo\Asserts::count
      * @covers CL\Carpo\Asserts::key
+     * @covers CL\Carpo\Asserts::rewind
+     * @covers CL\Carpo\Asserts::contains
+     * @covers CL\Carpo\Asserts::isEmpty
      */
     public function testConstruct()
     {
@@ -36,10 +42,27 @@ class AssertsTest extends AbstractTestCase
             $this->assertSame($assertObjects[$i], $assert);
             $this->assertTrue($asserts->contains($assert));
         }
+
+        $asserts->rewind();
+
+        $this->assertFalse($asserts->isEmpty());
+
+        $all = $asserts->all();
+
+        $this->assertCount(2, $all);
+
+        foreach ($all as $i => $assert)
+        {
+            $this->assertSame($assertObjects[$i], $assert);
+            $this->assertTrue($all->contains($assert));
+        }
+
     }
 
     /**
      * @covers CL\Carpo\Asserts::validate
+     * @covers CL\Carpo\Assert\AbstractAssertion::issetProperty
+     * @covers CL\Carpo\Assert\AbstractAssertion::getProperty
      */
     public function testValidateObject()
     {
@@ -66,14 +89,16 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
+        $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
+
         $errors = array_map(function($error) {
-            return $error->getMessage();
+            return $error->getFullMessage();
         }, $errors);
 
         $expected = array(
             'user_email should be a valid email',
             'subscribe_url should be a valid URL address',
-            'subscribe_ip should be a valid IP address',
+            'subscribe_ip is invalid',
         );
 
         $this->assertEquals($expected, $errors);
@@ -81,6 +106,8 @@ class AssertsTest extends AbstractTestCase
 
     /**
      * @covers CL\Carpo\Asserts::validate
+     * @covers CL\Carpo\Assert\AbstractAssertion::issetProperty
+     * @covers CL\Carpo\Assert\AbstractAssertion::getProperty
      */
     public function testValidateArray()
     {
@@ -107,14 +134,16 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
+        $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
+
         $errors = array_map(function($error) {
-            return $error->getMessage();
+            return $error->getFullMessage();
         }, $errors);
 
         $expected = array(
             'user_email should be a valid email',
             'subscribe_url should be a valid URL address',
-            'subscribe_ip should be a valid IP address',
+            'subscribe_ip is invalid',
         );
 
         $this->assertEquals($expected, $errors);

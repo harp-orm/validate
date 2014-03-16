@@ -24,6 +24,7 @@ class NumberTest extends AbstractTestCase
             array('ass10.20', Number::FLOAT, false),
             array('20.back', Number::FLOAT, false),
             array('20,20', Number::FLOAT, false),
+            array('20,20', null, null),
         );
     }
 
@@ -58,9 +59,8 @@ class NumberTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
      * @covers CL\Carpo\Assert\Number::__construct
-     * @covers CL\Carpo\Assert\Number::isStrict
+     * @covers CL\Carpo\Assert\Number::getType
      */
     public function testConstruct()
     {

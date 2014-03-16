@@ -31,7 +31,7 @@ class RegExTest extends AbstractTestCase
 
     /**
      * @covers CL\Carpo\Assert\RegEx::__construct
-     * @covers CL\Carpo\Assert\RegEx::getLength
+     * @covers CL\Carpo\Assert\RegEx::getPattern
      */
     public function testConstruct()
     {

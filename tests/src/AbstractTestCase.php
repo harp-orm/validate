@@ -24,7 +24,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase {
         } else {
             $message = sprintf('Assertion %s should fail', get_class($assertion));
             $this->assertTrue($result instanceof Error, $message);
-            $this->assertEquals($expected, $result->getMessage());
+            $this->assertEquals($expected, $result->getFullMessage());
         }
     }
 }

@@ -5,14 +5,16 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
- * @author     Ivan Kerin
- * @copyright  (c) 2014 Clippings Ltd.
- * @license    http://www.opensource.org/licenses/isc-license.txt
+ * @author    Ivan Kerin <ikerin@gmail.com>
+ * @copyright (c) 2014 Clippings Ltd.
+ * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class IP extends AbstractAssertion
 {
-    protected $message = '%s should be a valid IP address';
-
+    /**
+     * @param  object|array $subject
+     * @return Error|null
+     */
     public function execute($object)
     {
         if ($this->issetProperty($object)) {

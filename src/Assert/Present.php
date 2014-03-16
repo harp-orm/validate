@@ -5,14 +5,27 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
- * @author     Ivan Kerin
- * @copyright  (c) 2014 Clippings Ltd.
- * @license    http://www.opensource.org/licenses/isc-license.txt
+ * @author    Ivan Kerin <ikerin@gmail.com>
+ * @copyright (c) 2014 Clippings Ltd.
+ * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class Present extends AbstractAssertion
 {
-    protected $message = '%s must be present';
+    /**
+     * @param string $name
+     * @param string $message
+     */
+    public function __construct($name, $message = null)
+    {
+        $message = $message ?: dgettext(Error::DOMAIN, '%s must be present');
 
+        parent::__construct($name, $message);
+    }
+
+    /**
+     * @param  object|array $subject
+     * @return Error|null
+     */
     public function execute($object)
     {
         if ( ! $this->issetProperty($object)) {

@@ -38,7 +38,7 @@ class CallbackTest extends AbstractTestCase
 
     /**
      * @covers CL\Carpo\Assert\Callback::__construct
-     * @covers CL\Carpo\Assert\Callback::getLength
+     * @covers CL\Carpo\Assert\Callback::getCallback
      */
     public function testConstruct()
     {

@@ -39,7 +39,8 @@ class LengthBetweenTest extends AbstractTestCase
 
     /**
      * @covers CL\Carpo\Assert\LengthBetween::__construct
-     * @covers CL\Carpo\Assert\LengthBetween::getLength
+     * @covers CL\Carpo\Assert\LengthBetween::getMin
+     * @covers CL\Carpo\Assert\LengthBetween::getMax
      */
     public function testConstruct()
     {

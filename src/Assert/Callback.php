@@ -6,15 +6,22 @@ use CL\Carpo\Error;
 use InvalidArgumentException;
 
 /**
- * @author     Ivan Kerin
- * @copyright  (c) 2014 Clippings Ltd.
- * @license    http://www.opensource.org/licenses/isc-license.txt
+ * @author    Ivan Kerin <ikerin@gmail.com>
+ * @copyright (c) 2014 Clippings Ltd.
+ * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class Callback extends AbstractAssertion
 {
+    /**
+     * @var mixed
+     */
     protected $callback;
-    protected $message = '%s is invalid';
 
+    /**
+     * @param string $name
+     * @param mixed $callback
+     * @param string $message
+     */
     public function __construct($name, $callback, $message = null)
     {
         if ( ! is_callable($callback)) {
@@ -26,15 +33,22 @@ class Callback extends AbstractAssertion
         parent::__construct($name, $message);
     }
 
+    /**
+     * @return mixed
+     */
     public function getCallback()
     {
         return $this->callback;
     }
 
-    public function execute($object)
+    /**
+     * @param  object|array $subject
+     * @return Error|null
+     */
+    public function execute($subject)
     {
-        if ($this->issetProperty($object)) {
-            $value = $this->getProperty($object);
+        if ($this->issetProperty($subject)) {
+            $value = $this->getProperty($subject);
 
             if (! call_user_func($this->callback, $value)) {
                 return new Error($this->getMessage(), $this->getName());

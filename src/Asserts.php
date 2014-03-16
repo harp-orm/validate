@@ -8,9 +8,9 @@ use Iterator;
 use SplObjectStorage;
 
 /**
- * @author     Ivan Kerin
- * @copyright  (c) 2014 Clippings Ltd.
- * @license    http://www.opensource.org/licenses/isc-license.txt
+ * @author    Ivan Kerin <ikerin@gmail.com>
+ * @copyright (c) 2014 Clippings Ltd.
+ * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class Asserts implements Iterator, Countable
 {
@@ -23,41 +23,65 @@ class Asserts implements Iterator, Countable
         $this->set($asserts);
     }
 
+    /**
+     * @return AbstractAssertion
+     */
     public function current()
     {
         return $this->asserts->current();
     }
 
+    /**
+     * @return integer
+     */
     public function key()
     {
         return $this->asserts->key();
     }
 
+    /**
+     * @return void
+     */
     public function next()
     {
-        return $this->asserts->next();
+        $this->asserts->next();
     }
 
+    /**
+     * @return void
+     */
     public function rewind()
     {
         return $this->asserts->rewind();
     }
 
+    /**
+     * @return boolean
+     */
     public function valid()
     {
         return $this->asserts->valid();
     }
 
+    /**
+     * @param AbstractAssertion $assert
+     */
     public function add(AbstractAssertion $assert)
     {
         $this->asserts->attach($assert);
     }
 
+    /**
+     * @return boolean
+     */
     public function isEmpty()
     {
         return empty($this->asserts);
     }
 
+    /**
+     * @param array $asserts
+     */
     public function set(array $asserts)
     {
         array_walk($asserts, array($this, 'add'));
@@ -65,21 +89,35 @@ class Asserts implements Iterator, Countable
         return $this;
     }
 
+    /**
+     * @param  AbstractAssertion $assert
+     * @return boolean
+     */
     public function contains(AbstractAssertion $assert)
     {
         return $this->asserts->contains($assert);
     }
 
+    /**
+     * @return integer
+     */
     public function count()
     {
         return $this->asserts->count();
     }
 
+    /**
+     * @return SplObjectStorage
+     */
     public function all()
     {
         return $this->asserts;
     }
 
+    /**
+     * @param  object|array $subject
+     * @return array        array of error objects
+     */
     public function validate($subject)
     {
         $errors = array();

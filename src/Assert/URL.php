@@ -5,12 +5,18 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
- * @author     Ivan Kerin
- * @copyright  (c) 2014 Clippings Ltd.
- * @license    http://www.opensource.org/licenses/isc-license.txt
+ * @author    Ivan Kerin <ikerin@gmail.com>
+ * @copyright (c) 2014 Clippings Ltd.
+ * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class URL extends AbstractAssertion
 {
+    /**
+     * Build url from parts, opposite of parse_url
+     *
+     * @param  array $parts  return of parse_url function
+     * @return string        complete url
+     */
     public static function buildUrl($parts)
     {
         $url = '';
@@ -50,6 +56,12 @@ class URL extends AbstractAssertion
         return $url;
     }
 
+    /**
+     * Convert utf parts of urls
+     *
+     * @param  string $url
+     * @return string
+     */
     public static function convertUtfUrl($url)
     {
         $parts = parse_url($url);
@@ -75,21 +87,34 @@ class URL extends AbstractAssertion
 
     const STRICT = 1;
 
-    protected $message = '%s should be a valid URL address';
+    /**
+     * @var integer
+     */
     protected $type;
 
     public function __construct($name, $type = null, $message = null)
     {
         $this->type = $type;
 
+        $message = $message ?: dgettext(Error::DOMAIN, '%s should be a valid URL address');
+
         parent::__construct($name, $message);
     }
 
+    /**
+     * @return boolean
+     */
     public function isStrict()
     {
         return $this->type == self::STRICT;
     }
 
+    /**
+     * Convert utf parts of url and then check if its valid
+     *
+     * @param  string  $url
+     * @return boolean
+     */
     public static function isValid($url)
     {
         $url = self::convertUtfUrl($url);
@@ -97,11 +122,21 @@ class URL extends AbstractAssertion
         return self::isValidStrict($url);
     }
 
+    /**
+     * Check url against the RFC directly, using php's built in filter_var
+     *
+     * @param  string  $url
+     * @return boolean
+     */
     public static function isValidStrict($url)
     {
         return filter_var($url, FILTER_VALIDATE_URL) !== false;
     }
 
+    /**
+     * @param  object|array $subject
+     * @return Error|null
+     */
     public function execute($object)
     {
         if ($this->issetProperty($object)) {
