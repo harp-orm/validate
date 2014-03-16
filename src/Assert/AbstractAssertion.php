@@ -5,8 +5,8 @@
  * @copyright  (c) 2014 Clippings Ltd.
  * @license    http://www.opensource.org/licenses/isc-license.txt
  */
-abstract class AbstractAssertion {
-
+abstract class AbstractAssertion
+{
     protected $name;
     protected $message;
 
@@ -14,8 +14,7 @@ abstract class AbstractAssertion {
     {
         $this->name = $name;
 
-        if ($message !== null)
-        {
+        if ($message !== null) {
             $this->message = $message;
         }
     }
@@ -32,12 +31,12 @@ abstract class AbstractAssertion {
 
     public function issetProperty($subject)
     {
-        return isset($subject->{$this->name});
+        return is_array($subject) ? isset($subject[$this->name]) : isset($subject->{$this->name});
     }
 
     public function getProperty($subject)
     {
-        return $subject->{$this->name};
+        return is_array($subject) ? $subject[$this->name] : $subject->{$this->name};
     }
 
     abstract public function execute($subject);

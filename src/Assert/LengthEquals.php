@@ -28,13 +28,11 @@ class LengthEquals extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
             $length = mb_strlen($value, mb_detect_encoding($value));
 
-            if ($length != $this->length)
-            {
+            if ($length != $this->length) {
                 return new Error($this->getMessage(), $this->getName(), $this->length);
             }
         }

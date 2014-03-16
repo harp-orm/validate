@@ -21,14 +21,14 @@ class Email extends AbstractAssertion
         $atom  = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
         $pair  = '\\x5c[\\x00-\\x7f]';
 
-        $domain_literal = "\\x5b($dtext|$pair)*\\x5d";
-        $quoted_string  = "\\x22($qtext|$pair)*\\x22";
-        $sub_domain     = "($atom|$domain_literal)";
-        $word           = "($atom|$quoted_string)";
-        $domain         = "$sub_domain(\\x2e$sub_domain)*";
-        $local_part     = "$word(\\x2e$word)*";
+        $domainLiteral = "\\x5b($dtext|$pair)*\\x5d";
+        $quotedString  = "\\x22($qtext|$pair)*\\x22";
+        $subdomain     = "($atom|$domainLiteral)";
+        $word           = "($atom|$quotedString)";
+        $domain         = "$subdomain(\\x2e$subdomain)*";
+        $localPart     = "$word(\\x2e$word)*";
 
-        $expression     = "/^$local_part\\x40$domain$/D";
+        $expression     = "/^$localPart\\x40$domain$/D";
 
         return (bool) preg_match($expression, $email);
     }
@@ -59,12 +59,10 @@ class Email extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
 
-            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value)))
-            {
+            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

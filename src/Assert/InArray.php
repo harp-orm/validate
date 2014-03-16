@@ -10,25 +10,25 @@ use InvalidArgumentException;
  * @copyright  (c) 2014 Clippings Ltd.
  * @license    http://www.opensource.org/licenses/isc-license.txt
  */
-class Callback extends AbstractAssertion
+class InArray extends AbstractAssertion
 {
-    protected $callback;
+    protected $array;
     protected $message = '%s is invalid';
 
-    public function __construct($name, $callback, $message = null)
+    public function __construct($name, array $array, $message = null)
     {
-        if ( ! is_callable($callback)) {
-            throw new InvalidArgumentException('Callback should be callable');
+        if (empty($array)) {
+            throw new InvalidArgumentException('Array should not be empty');
         }
 
-        $this->callback = $callback;
+        $this->array = $array;
 
         parent::__construct($name, $message);
     }
 
-    public function getCallback()
+    public function getArray()
     {
-        return $this->callback;
+        return $this->array;
     }
 
     public function execute($object)
@@ -36,7 +36,7 @@ class Callback extends AbstractAssertion
         if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
 
-            if (! call_user_func($this->callback, $value)) {
+            if (! in_array($value, $this->array)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

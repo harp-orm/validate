@@ -54,21 +54,17 @@ class URL extends AbstractAssertion
     {
         $parts = parse_url($url);
 
-        if (extension_loaded('intl'))
-        {
-            if (isset($parts['host']))
-            {
+        if (extension_loaded('intl')) {
+            if (isset($parts['host'])) {
                 $parts['host'] = idn_to_ascii($parts['host']);
             }
         }
 
-        if (isset($parts['path']))
-        {
+        if (isset($parts['path'])) {
             $parts['path'] = implode('/', array_map('urlencode', explode('/', $parts['path'])));
         }
 
-        if (isset($parts['query']))
-        {
+        if (isset($parts['query'])) {
             parse_str($parts['query'], $query);
 
             $parts['query'] = http_build_query($query);
@@ -108,12 +104,10 @@ class URL extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
 
-            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value)))
-            {
+            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

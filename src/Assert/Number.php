@@ -13,8 +13,7 @@ class Number extends AbstractAssertion
 {
     public static function isValid($type, $value)
     {
-        switch ($type)
-        {
+        switch ($type) {
             case self::INTEGER:
                 return ctype_digit($value);
 
@@ -43,12 +42,10 @@ class Number extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
 
-            if (! self::isValid($this->getType(), $value))
-            {
+            if (! self::isValid($this->getType(), $value)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

@@ -18,8 +18,7 @@ class LengthBetween extends AbstractAssertion
 
     public function __construct($name, $min, $max, $massage = null)
     {
-        if ($min >= $max)
-        {
+        if ($min >= $max) {
             throw new InvalidArgumentException('Min should be less than max');
         }
 
@@ -41,13 +40,11 @@ class LengthBetween extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
             $length = mb_strlen($value, mb_detect_encoding($value));
 
-            if ($length < $this->min || $length > $this->max)
-            {
+            if ($length < $this->min || $length > $this->max) {
                 return new Error($this->getMessage(), $this->getName(), $this->min, $this->max);
             }
         }

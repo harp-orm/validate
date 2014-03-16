@@ -28,12 +28,10 @@ class RegEx extends AbstractAssertion
 
     public function execute($object)
     {
-        if ($this->issetProperty($object))
-        {
+        if ($this->issetProperty($object)) {
             $value = $this->getProperty($object);
 
-            if (! preg_match($this->pattern, $value))
-            {
+            if (! preg_match($this->pattern, $value)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }
