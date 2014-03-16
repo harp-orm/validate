@@ -76,7 +76,7 @@ class Asserts implements Iterator, Countable
      */
     public function isEmpty()
     {
-        return empty($this->asserts);
+        return count($this->asserts) === 0;
     }
 
     /**
@@ -120,11 +120,11 @@ class Asserts implements Iterator, Countable
      */
     public function validate($subject)
     {
-        $errors = array();
+        $errors = new Errors($subject);
 
         foreach ($this->asserts as $assert) {
             if (($error = $assert->execute($subject))) {
-                $errors []= $error;
+                $errors->add($error);
             }
         }
 

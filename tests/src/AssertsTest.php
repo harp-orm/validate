@@ -36,6 +36,7 @@ class AssertsTest extends AbstractTestCase
         $asserts = new Asserts($assertObjects);
 
         $this->assertCount(2, $asserts);
+        $this->assertFalse($asserts->isEmpty());
 
         foreach ($asserts as $i => $assert)
         {
@@ -81,7 +82,7 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
-        $this->assertEmpty($errors);
+        $this->assertTrue($errors->isEmpty());
 
         $subject->user_email = 'test';
         $subject->subscribe_url = 'http:/';
@@ -91,17 +92,13 @@ class AssertsTest extends AbstractTestCase
 
         $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
 
-        $errors = array_map(function($error) {
-            return $error->getFullMessage();
-        }, $errors);
-
-        $expected = array(
+        $expected = implode(', ', array(
             'user_email should be a valid email',
             'subscribe_url should be a valid URL address',
             'subscribe_ip is invalid',
-        );
+        ));
 
-        $this->assertEquals($expected, $errors);
+        $this->assertEquals($expected, $errors->humanize());
     }
 
     /**
@@ -126,7 +123,7 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
-        $this->assertEmpty($errors);
+        $this->assertTrue($errors->isEmpty());
 
         $subject['user_email'] = 'test';
         $subject['subscribe_url'] = 'http:/';
@@ -136,16 +133,12 @@ class AssertsTest extends AbstractTestCase
 
         $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
 
-        $errors = array_map(function($error) {
-            return $error->getFullMessage();
-        }, $errors);
-
-        $expected = array(
+        $expected = implode(', ', array(
             'user_email should be a valid email',
             'subscribe_url should be a valid URL address',
             'subscribe_ip is invalid',
-        );
+        ));
 
-        $this->assertEquals($expected, $errors);
+        $this->assertEquals($expected, $errors->humanize());
     }
 }
