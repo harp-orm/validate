@@ -26,12 +26,11 @@ $subject->newsletter_email = 'invalid email';
 
 // title should be between 10 and 20 letters, newsletter_email should be a valid email
 echo $asserts->validate($subject);
-
 ```
 
 You can use both arrays and objects for subjects.
 
-```
+```php
 $subject = array(
     'title' => 'small title',
     'newsletter_email' => 'invalid email',
@@ -46,7 +45,7 @@ Errors
 The result of ``$asserts->validate($subject)`` is actually an ``Errors`` object. It's an Iterator that holds all the erorrs and has ``->humanize()`` mehtod to display all the errors.
 You can also foreach it and get all the errors separately. Casting it to string calls ``->humanize()`` automatically.
 
-```
+```php
 $errors = $asserts->validate($subject);
 
 foreach($errors => $error) {
