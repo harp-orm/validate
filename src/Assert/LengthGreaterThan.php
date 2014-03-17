@@ -5,6 +5,8 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
+ * Assert that the value's string length is longer than a set length. Uses mb_strlen() internally.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause

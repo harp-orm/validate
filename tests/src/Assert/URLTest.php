@@ -200,10 +200,12 @@ class URLTest extends AbstractTestCase
     public function dataExecute()
     {
         return array(
-            array('http://example.com', null, true),
-            array('http://user:pass@www.example.com', null, true),
-            array('example', null, 'test should be a valid URL address'),
-            array('http://foo.com/unicode_(✪)_in_parens', null, true),
+            array('http://example.com', URL::NORMAL, true),
+            array('http://user:pass@www.example.com', URL::NORMAL, true),
+            array('example', URL::NORMAL, 'test should be a valid URL address'),
+            array('http://foo.com/unicode_(✪)_in_parens', URL::NORMAL, true),
+            array('http://user:pass@www.example.com', URL::STRICT, true),
+            array('http://example.com', URL::STRICT, true),
             array('http://foo.com/unicode_(✪)_in_parens', URL::STRICT, 'test should be a valid URL address'),
         );
     }

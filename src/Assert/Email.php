@@ -5,13 +5,19 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
+ * Assert if the value is not a proper email address.
+ * By default it uses Email::NORMAL - a small and fast regex which should handle most cases.
+ * If you need to validate unusual email addresses you can use Email::STRICT.
+ * It will then use a slower but more comprehensive check.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
 class Email extends AbstractAssertion
 {
-    const STRICT = 1;
+    const NORMAL = 1;
+    const STRICT = 2;
 
     /**
      * Check if email is valid with a comprehensive, but slower regex
@@ -61,7 +67,7 @@ class Email extends AbstractAssertion
      */
     protected $type;
 
-    public function __construct($name, $type = null, $message = null)
+    public function __construct($name, $type = EMAIL::NORMAL, $message = null)
     {
         $this->type = $type;
 

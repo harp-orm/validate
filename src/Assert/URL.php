@@ -5,6 +5,13 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
+ * Assert if the value is a valid url.
+ * By default it uses URL::NORMAL which converts all UTF related charecters in the url to their proper encoding.
+ * It also will convert non-ASCII domain names, using "idn" if the "intl" extension is available.
+ * This is similar to what browsers normally do.
+ * If you want to use a more strict definition or URLs, stright from the RFC - you can use URL::STRICT.
+ * It directly uses php's filter_var() method.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
@@ -85,14 +92,15 @@ class URL extends AbstractAssertion
         return self::buildUrl($parts);
     }
 
-    const STRICT = 1;
+    const NORMAL = 1;
+    const STRICT = 2;
 
     /**
      * @var integer
      */
     protected $type;
 
-    public function __construct($name, $type = null, $message = null)
+    public function __construct($name, $type = URL::NORMAL, $message = null)
     {
         $this->type = $type;
 

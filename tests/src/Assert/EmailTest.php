@@ -59,10 +59,10 @@ class EmailTest extends AbstractTestCase
     public function dataExecute()
     {
         return array(
-            array('test@example.com', null, true),
-            array('test+test@example.com', null, true),
-            array('test', null, 'test should be a valid email'),
-            array('"Abc\@def"@example.com', null, 'test should be a valid email'),
+            array('test@example.com', Email::NORMAL, true),
+            array('test+test@example.com', Email::NORMAL, true),
+            array('test', Email::NORMAL, 'test should be a valid email'),
+            array('"Abc\@def"@example.com', Email::NORMAL, 'test should be a valid email'),
             array('"Abc\@def"@example.com', Email::STRICT, true),
         );
     }

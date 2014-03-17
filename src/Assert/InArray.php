@@ -6,6 +6,9 @@ use CL\Carpo\Error;
 use InvalidArgumentException;
 
 /**
+ * Assert if the value is present in an array, uses a simple in_array call.
+ * Will throw InvalidArgumentException if the array is empty.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause

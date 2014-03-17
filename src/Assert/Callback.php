@@ -6,6 +6,9 @@ use CL\Carpo\Error;
 use InvalidArgumentException;
 
 /**
+ * Assert that the result of a given callback is true. You can thus use php's native validation functions.
+ * It only passes the value to the method.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause

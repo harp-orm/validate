@@ -5,6 +5,9 @@ namespace CL\Carpo\Assert;
 use CL\Carpo\Error;
 
 /**
+ * Assert that the value is a number. By default only integers are allowed (Number::INTEGER).
+ * If you want to check for floats you can use Number::FLOAT.
+ *
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
