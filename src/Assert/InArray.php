@@ -21,16 +21,11 @@ class InArray extends AbstractAssertion
     protected $array;
 
     /**
-     * @var string
-     */
-    protected $message;
-
-    /**
      * @param string $name
      * @param array  $array
      * @param string $message
      */
-    public function __construct($name, array $array, $message = null)
+    public function __construct($name, array $array, $message = ':name is invalid')
     {
         if (empty($array)) {
             throw new InvalidArgumentException('Array should not be empty');

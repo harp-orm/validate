@@ -2,6 +2,8 @@
 
 namespace CL\Carpo;
 
+use InvalidArgumentException;
+
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
@@ -9,7 +11,22 @@ namespace CL\Carpo;
  */
 class Error
 {
-    const DOMAIN = 'carpo';
+    protected static $translator = 'strtr';
+
+    public static function getTranslator()
+    {
+        return self::$translator;
+    }
+
+    public static function setTranslator($translator)
+    {
+        if (! is_callable($translator)) {
+            throw new InvalidArgumentException('Translator must be callable function');
+        }
+
+        self::$translator = $translator;
+    }
+
 
     /**
      * The name of the property this error was recorded for
@@ -28,14 +45,11 @@ class Error
      */
     protected $message;
 
-    public function __construct($message, $name)
+    public function __construct($message, $name, array $parameters = array())
     {
-        $params = func_get_args();
-
-        $this->parameters = array_slice($params, 2);
-
         $this->name = $name;
         $this->message = $message;
+        $this->parameters = $parameters;
     }
 
     /**
@@ -76,13 +90,10 @@ class Error
      */
     public function getMessageParameters()
     {
-        $parameters = array($this->name);
-
-        if ($this->parameters) {
-            $parameters = array_merge($parameters, $this->parameters);
-        }
-
-        return $parameters;
+        return array_merge(
+            array(':name' => $this->name),
+            $this->parameters
+        );
     }
 
     /**
@@ -102,7 +113,7 @@ class Error
      */
     public function getFullMessage()
     {
-        return vsprintf($this->message, $this->getMessageParameters());
+        return call_user_func(self::$translator, $this->message, $this->getMessageParameters());
     }
 
     /**

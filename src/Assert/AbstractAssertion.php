@@ -1,4 +1,6 @@
-<?php namespace CL\Carpo\Assert;
+<?php
+
+namespace CL\Carpo\Assert;
 
 use CL\Carpo\Error;
 
@@ -17,17 +19,16 @@ abstract class AbstractAssertion
     /**
      * @var string
      */
-    protected $message = '%s is invalid';
+    protected $message;
 
     /**
      * @param string $name
      * @param string $message
      */
-    public function __construct($name, $message = null)
+    public function __construct($name, $message = ':name is invalid')
     {
         $this->name = $name;
-
-        $this->message = $message ?: dgettext(Error::DOMAIN, '%s is invalid');
+        $this->message = $message;
     }
 
     /**

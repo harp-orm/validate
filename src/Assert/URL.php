@@ -100,11 +100,9 @@ class URL extends AbstractAssertion
      */
     protected $type;
 
-    public function __construct($name, $type = URL::NORMAL, $message = null)
+    public function __construct($name, $type = URL::NORMAL, $message = ':name should be a valid URL address')
     {
         $this->type = $type;
-
-        $message = $message ?: dgettext(Error::DOMAIN, '%s should be a valid URL address');
 
         parent::__construct($name, $message);
     }

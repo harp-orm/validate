@@ -25,9 +25,9 @@ class Callback extends AbstractAssertion
      * @param mixed $callback
      * @param string $message
      */
-    public function __construct($name, $callback, $message = null)
+    public function __construct($name, $callback, $message = ':name is invalid')
     {
-        if ( ! is_callable($callback)) {
+        if (! is_callable($callback)) {
             throw new InvalidArgumentException('Callback should be callable');
         }
 

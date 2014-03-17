@@ -17,10 +17,8 @@ class Present extends AbstractAssertion
      * @param string $name
      * @param string $message
      */
-    public function __construct($name, $message = null)
+    public function __construct($name, $message =  ':name must be present')
     {
-        $message = $message ?: dgettext(Error::DOMAIN, '%s must be present');
-
         parent::__construct($name, $message);
     }
 

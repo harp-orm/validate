@@ -48,11 +48,9 @@ class Number extends AbstractAssertion
      * @param integer $type
      * @param string  $message
      */
-    public function __construct($name, $type = Number::INTEGER, $message = null)
+    public function __construct($name, $type = Number::INTEGER, $message = ':name is an invalid number')
     {
         $this->type = $type;
-
-        $message = $message ?: dgettext(Error::DOMAIN, '%s is an invalid number');
 
         parent::__construct($name, $message);
     }

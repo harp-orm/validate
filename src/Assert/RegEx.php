@@ -20,7 +20,7 @@ class RegEx extends AbstractAssertion
      * @param string $pattern regex string
      * @param string $message
      */
-    public function __construct($name, $pattern, $message = null)
+    public function __construct($name, $pattern, $message = ':name is invalid')
     {
         $this->pattern = (string) $pattern;
 

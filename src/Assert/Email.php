@@ -52,7 +52,26 @@ class Email extends AbstractAssertion
      */
     public static function isValid($email)
     {
-        $expression = '/^[-_a-z0-9\'+*$^&%=~!?{}]++(?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+@(?:(?![-.])[-a-z0-9.]+(?<![-.])\.[a-z]{2,6}|\d{1,3}(?:\.\d{1,3}){3})$/iD';
+        $expression =
+            '/^
+
+            [-_a-z0-9\'+*$^&%=~!?{}]++
+            (?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+
+
+            @ # domain part
+
+            # host name
+            (?:(?![-.])[-a-z0-9.]+(?<![-.])
+
+            \. # top level
+
+            [a-z]{2,6}
+            | # or
+            \d{1,3}
+
+            (?:\.\d{1,3}){3})
+
+            $/iDx';
 
         return (bool) preg_match($expression, $email);
     }
@@ -67,11 +86,9 @@ class Email extends AbstractAssertion
      */
     protected $type;
 
-    public function __construct($name, $type = EMAIL::NORMAL, $message = null)
+    public function __construct($name, $type = EMAIL::NORMAL, $message = ':name should be a valid email')
     {
         $this->type = $type;
-
-        $message = $message ?: dgettext(Error::DOMAIN, '%s should be a valid email');
 
         parent::__construct($name, $message);
     }

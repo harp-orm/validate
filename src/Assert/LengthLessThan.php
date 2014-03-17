@@ -23,11 +23,9 @@ class LengthLessThan extends AbstractAssertion
      * @param integer $length
      * @param string  $message
      */
-    public function __construct($name, $length, $message = null)
+    public function __construct($name, $length, $message = ':name should be less than :length letters')
     {
         $this->length = (int) $length;
-
-        $message = $message ?: dgettext(Error::DOMAIN, '%s should be less than %s letters');
 
         parent::__construct($name, $message);
     }
@@ -51,7 +49,7 @@ class LengthLessThan extends AbstractAssertion
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length >= $this->length) {
-                return new Error($this->getMessage(), $this->getName(), $this->length);
+                return new Error($this->getMessage(), $this->getName(), array(':length' => $this->length));
             }
         }
     }

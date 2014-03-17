@@ -30,7 +30,7 @@ class LengthBetween extends AbstractAssertion
      * @param integer $max
      * @param string  $message
      */
-    public function __construct($name, $min, $max, $message = null)
+    public function __construct($name, $min, $max, $message = ':name should be between :min and :max letters')
     {
         if ($min >= $max) {
             throw new InvalidArgumentException('Min should be less than max');
@@ -38,8 +38,6 @@ class LengthBetween extends AbstractAssertion
 
         $this->min = (int) $min;
         $this->max = (int) $max;
-
-        $message = $message ?: dgettext(Error::DOMAIN, '%s should be between %s and %s letters');
 
         parent::__construct($name, $message);
     }
@@ -71,7 +69,7 @@ class LengthBetween extends AbstractAssertion
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length < $this->min || $length > $this->max) {
-                return new Error($this->getMessage(), $this->getName(), $this->min, $this->max);
+                return new Error($this->getMessage(), $this->getName(), array(':min' => $this->min, ':max' => $this->max));
             }
         }
     }
