@@ -21,8 +21,8 @@ class URL extends AbstractAssertion
     /**
      * Build url from parts, opposite of parse_url
      *
-     * @param  array $parts  return of parse_url function
-     * @return string        complete url
+     * @param  array  $parts return of parse_url function
+     * @return string complete url
      */
     public static function buildUrl($parts)
     {
@@ -147,10 +147,10 @@ class URL extends AbstractAssertion
      * @param  object|array $subject
      * @return Error|null
      */
-    public function execute($object)
+    public function execute($subject)
     {
-        if ($this->issetProperty($object)) {
-            $value = $this->getProperty($object);
+        if ($this->issetProperty($subject)) {
+            $value = $this->getProperty($subject);
 
             if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
                 return new Error($this->getMessage(), $this->getName());

@@ -99,7 +99,7 @@ class Errors implements Iterator, Countable
     }
 
     /**
-     * @param  Error $error
+     * @param  Error   $error
      * @return boolean
      */
     public function contains(Error $error)

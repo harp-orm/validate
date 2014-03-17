@@ -27,7 +27,6 @@ class Error
         self::$translator = $translator;
     }
 
-
     /**
      * The name of the property this error was recorded for
      *
@@ -45,6 +44,10 @@ class Error
      */
     protected $message;
 
+    /**
+     * @param string $message
+     * @param string $name
+     */
     public function __construct($message, $name, array $parameters = array())
     {
         $this->name = $name;
@@ -65,8 +68,8 @@ class Error
     /**
      * Change the name of the property for this error.
      *
-     * @param string $name
-     * @return Error $this
+     * @param  string $name
+     * @return Error  $this
      */
     public function setName($name)
     {

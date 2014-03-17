@@ -20,7 +20,7 @@ class Number extends AbstractAssertion
     /**
      * @param  integer  $type  Number::INTEGER or Number::FLOAT
      * @param  string  $value
-     * @return boolean
+     * @return boolean|null
      */
     public static function isValid($type, $value)
     {
@@ -69,10 +69,10 @@ class Number extends AbstractAssertion
      * @param  object|array $subject
      * @return Error|null
      */
-    public function execute($object)
+    public function execute($subject)
     {
-        if ($this->issetProperty($object)) {
-            $value = $this->getProperty($object);
+        if ($this->issetProperty($subject)) {
+            $value = $this->getProperty($subject);
 
             if (! self::isValid($this->getType(), $value)) {
                 return new Error($this->getMessage(), $this->getName());

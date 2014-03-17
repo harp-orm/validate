@@ -22,7 +22,7 @@ class Callback extends AbstractAssertion
 
     /**
      * @param string $name
-     * @param mixed $callback
+     * @param mixed  $callback
      * @param string $message
      */
     public function __construct($name, $callback, $message = ':name is invalid')

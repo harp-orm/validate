@@ -17,12 +17,12 @@ class IP extends AbstractAssertion
      * @param  object|array $subject
      * @return Error|null
      */
-    public function execute($object)
+    public function execute($subject)
     {
-        if ($this->issetProperty($object)) {
+        if ($this->issetProperty($subject)) {
             $flags = FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE;
 
-            if (! filter_var($this->getProperty($object), FILTER_VALIDATE_IP, $flags)) {
+            if (! filter_var($this->getProperty($subject), FILTER_VALIDATE_IP, $flags)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

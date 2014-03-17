@@ -42,14 +42,15 @@ class LengthLessThan extends AbstractAssertion
      * @param  object|array $subject
      * @return Error|null
      */
-    public function execute($object)
+    public function execute($subject)
     {
-        if ($this->issetProperty($object)) {
-            $value = $this->getProperty($object);
+        if ($this->issetProperty($subject)) {
+            $value = $this->getProperty($subject);
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length >= $this->length) {
                 $parameters = array(':length' => $this->length);
+
                 return new Error($this->getMessage(), $this->getName(), $parameters);
             }
         }

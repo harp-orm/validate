@@ -26,9 +26,9 @@ class Present extends AbstractAssertion
      * @param  object|array $subject
      * @return Error|null
      */
-    public function execute($object)
+    public function execute($subject)
     {
-        if (! $this->issetProperty($object)) {
+        if (! $this->issetProperty($subject)) {
             return new Error($this->getMessage(), $this->getName());
         }
     }

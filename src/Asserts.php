@@ -116,7 +116,7 @@ class Asserts implements Iterator, Countable
 
     /**
      * @param  object|array $subject
-     * @return array        array of error objects
+     * @return Errors        array of error objects
      */
     public function validate($subject)
     {
