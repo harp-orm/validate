@@ -73,8 +73,7 @@ class URL extends AbstractAssertion
     {
         $parts = parse_url($url);
 
-        if ($parts !== false)
-        {
+        if ($parts !== false) {
             if (isset($parts['host'])) {
                 if (function_exists('idn_to_ascii')) {
                     $parts['host'] = idn_to_ascii($parts['host']);
