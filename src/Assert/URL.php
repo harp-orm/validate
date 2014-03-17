@@ -73,23 +73,28 @@ class URL extends AbstractAssertion
     {
         $parts = parse_url($url);
 
-        if (isset($parts['host'])) {
-            if (function_exists('idn_to_ascii')) {
-                $parts['host'] = idn_to_ascii($parts['host']);
+        if ($parts !== false)
+        {
+            if (isset($parts['host'])) {
+                if (function_exists('idn_to_ascii')) {
+                    $parts['host'] = idn_to_ascii($parts['host']);
+                }
             }
+
+            if (isset($parts['path'])) {
+                $parts['path'] = implode('/', array_map('urlencode', explode('/', $parts['path'])));
+            }
+
+            if (isset($parts['query'])) {
+                parse_str($parts['query'], $query);
+
+                $parts['query'] = http_build_query($query);
+            }
+
+            return self::buildUrl($parts);
         }
 
-        if (isset($parts['path'])) {
-            $parts['path'] = implode('/', array_map('urlencode', explode('/', $parts['path'])));
-        }
-
-        if (isset($parts['query'])) {
-            parse_str($parts['query'], $query);
-
-            $parts['query'] = http_build_query($query);
-        }
-
-        return self::buildUrl($parts);
+        return '';
     }
 
     const NORMAL = 1;

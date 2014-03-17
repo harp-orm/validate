@@ -17,7 +17,7 @@ class Present extends AbstractAssertion
      * @param string $name
      * @param string $message
      */
-    public function __construct($name, $message =  ':name must be present')
+    public function __construct($name, $message = ':name must be present')
     {
         parent::__construct($name, $message);
     }
@@ -28,7 +28,7 @@ class Present extends AbstractAssertion
      */
     public function execute($object)
     {
-        if ( ! $this->issetProperty($object)) {
+        if (! $this->issetProperty($object)) {
             return new Error($this->getMessage(), $this->getName());
         }
     }

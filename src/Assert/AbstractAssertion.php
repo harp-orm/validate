@@ -48,7 +48,7 @@ abstract class AbstractAssertion
     }
 
     /**
-     * @param  object|string $subject
+     * @param  object|array $subject
      * @return boolean
      */
     public function issetProperty($subject)
@@ -57,7 +57,7 @@ abstract class AbstractAssertion
     }
 
     /**
-     * @param  object|string $subject
+     * @param  object|array $subject
      * @return mixed
      */
     public function getProperty($subject)
@@ -66,9 +66,8 @@ abstract class AbstractAssertion
     }
 
     /**
-     * @param  object|string $subject
+     * @param  object|array $subject
      * @return Error|null
      */
     abstract public function execute($subject);
-
 }

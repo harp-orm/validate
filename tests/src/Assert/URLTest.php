@@ -154,8 +154,6 @@ class URLTest extends AbstractTestCase
 
             // Strictly invalid
             array('http://яндекс.рф', false),
-            array('http://foo.com/unicode_(✪)_in_parens', false),
-            array('http://foo.bar?q=Should allow spaces in query', false),
 
             // Strictly valid
             array('http://'.str_pad('example-', 70, 'a').'.com', true),
@@ -206,7 +204,7 @@ class URLTest extends AbstractTestCase
             array('http://foo.com/unicode_(✪)_in_parens', URL::NORMAL, true),
             array('http://user:pass@www.example.com', URL::STRICT, true),
             array('http://example.com', URL::STRICT, true),
-            array('http://foo.com/unicode_(✪)_in_parens', URL::STRICT, 'test should be a valid URL address'),
+            array('http://яндекс.ru/unicode_(✪)_in_parens', URL::STRICT, 'test should be a valid URL address'),
         );
     }
 

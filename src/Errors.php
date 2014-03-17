@@ -130,8 +130,7 @@ class Errors implements Iterator, Countable
     {
         $result = array();
 
-        foreach ($this->errors as $error)
-        {
+        foreach ($this->errors as $error) {
             $result []= $error->getFullMessage();
         }
 

@@ -49,7 +49,8 @@ class LengthLessThan extends AbstractAssertion
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length >= $this->length) {
-                return new Error($this->getMessage(), $this->getName(), array(':length' => $this->length));
+                $parameters = array(':length' => $this->length);
+                return new Error($this->getMessage(), $this->getName(), $parameters);
             }
         }
     }

@@ -52,9 +52,9 @@ class AssertsTest extends AbstractTestCase
 
         $this->assertCount(2, $all);
 
-        foreach ($all as $i => $assert)
+        foreach ($all as $assert)
         {
-            $this->assertSame($assertObjects[$i], $assert);
+            $this->assertContains($assert, $assertObjects);
             $this->assertTrue($all->contains($assert));
         }
 

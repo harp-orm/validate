@@ -57,7 +57,7 @@ class ErrorsTest extends AbstractTestCase
 
         foreach ($all as $i => $error)
         {
-            $this->assertSame($errorObjects[$i], $error);
+            $this->assertContains($error, $errorObjects);
             $this->assertTrue($all->contains($error));
         }
     }
