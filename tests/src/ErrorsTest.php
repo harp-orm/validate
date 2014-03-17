@@ -40,9 +40,9 @@ class ErrorsTest extends AbstractTestCase
         $this->assertSame($subject, $errors->getSubject());
         $this->assertCount(2, $errors);
 
-        foreach ($errors as $i => $error)
+        foreach ($errors as $error)
         {
-            $this->assertSame($errorObjects[$i], $error);
+            $this->assertContains($error, $errorObjects);
             $this->assertTrue($errors->contains($error));
         }
 
