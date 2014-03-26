@@ -25,6 +25,23 @@ class Errors implements Iterator, Countable
     }
 
     /**
+     * @param  string $name
+     * @return Errors
+     */
+    public function onlyFor($name)
+    {
+        $errors = new Errors($this->subject);
+
+        foreach ($this->errors as $error) {
+            if ($error->getName() === $name) {
+                $errors->add($error);
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
      * @return mixed
      */
     public function getSubject()

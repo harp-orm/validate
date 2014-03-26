@@ -58,12 +58,14 @@ class Email extends AbstractAssertion
             [-_a-z0-9\'+*$^&%=~!?{}]++
             (?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+
 
-            @ # domain part
+            # domain part
+            @
 
             # host name
             (?:(?![-.])[-a-z0-9.]+(?<![-.])
 
-            \. # top level
+            # top level
+            \.
 
             [a-z]{2,6}
             | # or

@@ -40,6 +40,8 @@ class ErrorsTest extends AbstractTestCase
         $this->assertSame($subject, $errors->getSubject());
         $this->assertCount(2, $errors);
 
+        $this->assertEquals($errors->key(), key($errors->all()));
+
         foreach ($errors as $error)
         {
             $this->assertContains($error, $errorObjects);
@@ -62,6 +64,9 @@ class ErrorsTest extends AbstractTestCase
         }
     }
 
+    /**
+     * @covers CL\Carpo\Errors::humanize
+     */
     public function testHumanize()
     {
         $subject = new stdClass();
@@ -76,6 +81,30 @@ class ErrorsTest extends AbstractTestCase
         $this->assertEquals('test 1 name 1, test 2 name 2', $errors->humanize());
     }
 
+    /**
+     * @covers CL\Carpo\Errors::onlyFor
+     */
+    public function testOnlyFor()
+    {
+        $subject = new stdClass();
+
+        $errorObjects = array(
+            new Error('test 1 :name', 'name1'),
+            new Error('test 2 :name', 'name1'),
+            new Error('test 3 :name', 'name2'),
+        );
+
+        $errors = new Errors($subject, $errorObjects);
+
+        $filtered = $errors->onlyFor('name1');
+
+        $this->assertEquals('test 1 name1, test 2 name1', $filtered->humanize());
+        $this->assertSame($subject, $filtered->getSubject());
+    }
+
+    /**
+     * @covers CL\Carpo\Errors::__toString
+     */
     public function testToString()
     {
         $subject = new stdClass();

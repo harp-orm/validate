@@ -38,6 +38,8 @@ class AssertsTest extends AbstractTestCase
         $this->assertCount(2, $asserts);
         $this->assertFalse($asserts->isEmpty());
 
+        $this->assertEquals($asserts->key(), key($asserts->all()));
+
         foreach ($asserts as $assert)
         {
             $this->assertContains($assert, $assertObjects);
