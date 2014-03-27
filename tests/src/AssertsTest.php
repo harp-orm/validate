@@ -143,4 +143,23 @@ class AssertsTest extends AbstractTestCase
 
         $this->assertEquals($expected, $errors->humanize());
     }
+
+    /**
+     * @covers CL\Carpo\Asserts::onlyFor
+     */
+    public function testOnlyFor()
+    {
+        $assert1 = new Assert\Present('user_email');
+        $assert2 = new Assert\Email('user_email', Assert\Email::STRICT);
+        $assert3 = new Assert\URL('subscribe_url');
+        $assert4 = new Assert\IP('subscribe_ip');
+
+        $asserts = new Asserts(array($assert1, $assert2, $assert3, $assert4));
+
+        $filtered = $asserts->onlyFor('user_email');
+
+        $this->assertCount(2, $filtered);
+        $this->assertTrue($filtered->all()->contains($assert1));
+        $this->assertTrue($filtered->all()->contains($assert2));
+    }
 }

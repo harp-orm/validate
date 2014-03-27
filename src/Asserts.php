@@ -115,6 +115,23 @@ class Asserts implements Iterator, Countable
     }
 
     /**
+     * @param  string $name
+     * @return Asserts
+     */
+    public function onlyFor($name)
+    {
+        $asserts = new Asserts();
+
+        foreach ($this->asserts as $assert) {
+            if ($assert->getName() === $name) {
+                $asserts->add($assert);
+            }
+        }
+
+        return $asserts;
+    }
+
+    /**
      * @param  object|array $subject
      * @return Errors        array of error objects
      */
