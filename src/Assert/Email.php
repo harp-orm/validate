@@ -109,8 +109,8 @@ class Email extends AbstractAssertion
      */
     public function execute($subject)
     {
-        if ($this->issetProperty($subject)) {
-            $value = $this->getProperty($subject);
+        if ($this->issetProperty($subject, $this->getName())) {
+            $value = $this->getProperty($subject, $this->getName());
 
             if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
                 return new Error($this->getMessage(), $this->getName());

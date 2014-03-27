@@ -33,7 +33,8 @@ class Present extends AbstractAssertion
      */
     public function execute($subject)
     {
-        if (! $this->issetProperty($subject) or ! self::isValid($this->getProperty($subject))) {
+        if (! $this->issetProperty($subject, $this->getName())
+            or ! self::isValid($this->getProperty($subject, $this->getName()))) {
             return new Error($this->getMessage(), $this->getName());
         }
     }

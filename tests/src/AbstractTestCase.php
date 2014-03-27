@@ -13,8 +13,12 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase {
 
     public function assertAssertion($expected, AbstractAssertion $assertion, $value)
     {
-        $object = new stdClass();
-        $object->{$assertion->getName()} = $value;
+        if (is_array($value)) {
+            $object = $value;
+        } else {
+            $object = new stdClass();
+            $object->{$assertion->getName()} = $value;
+        }
 
         $result = $assertion->execute($object);
 

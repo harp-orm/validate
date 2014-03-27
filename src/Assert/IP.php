@@ -19,10 +19,10 @@ class IP extends AbstractAssertion
      */
     public function execute($subject)
     {
-        if ($this->issetProperty($subject)) {
+        if ($this->issetProperty($subject, $this->getName())) {
             $flags = FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE;
 
-            if (! filter_var($this->getProperty($subject), FILTER_VALIDATE_IP, $flags)) {
+            if (! filter_var($this->getProperty($subject, $this->getName()), FILTER_VALIDATE_IP, $flags)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

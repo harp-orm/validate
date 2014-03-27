@@ -64,8 +64,8 @@ class LengthBetween extends AbstractAssertion
      */
     public function execute($subject)
     {
-        if ($this->issetProperty($subject)) {
-            $value = $this->getProperty($subject);
+        if ($this->issetProperty($subject, $this->getName())) {
+            $value = $this->getProperty($subject, $this->getName());
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length < $this->min || $length > $this->max) {

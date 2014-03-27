@@ -49,20 +49,22 @@ abstract class AbstractAssertion
 
     /**
      * @param  object|array $subject
+     * @param  string $name
      * @return boolean
      */
-    public function issetProperty($subject)
+    public function issetProperty($subject, $name)
     {
-        return is_array($subject) ? isset($subject[$this->name]) : isset($subject->{$this->name});
+        return is_array($subject) ? isset($subject[$name]) : isset($subject->{$name});
     }
 
     /**
      * @param  object|array $subject
+     * @param  string $name
      * @return mixed
      */
-    public function getProperty($subject)
+    public function getProperty($subject, $name)
     {
-        return is_array($subject) ? $subject[$this->name] : $subject->{$this->name};
+        return is_array($subject) ? $subject[$name] : $subject->{$name};
     }
 
     /**

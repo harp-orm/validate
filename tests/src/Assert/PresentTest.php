@@ -43,7 +43,7 @@ class PresentTest extends AbstractTestCase
             array(false, 'test must be present'),
             array(0, true),
             array('0', true),
-            array(array(), true),
+            array(new stdClass(), true),
         );
     }
 

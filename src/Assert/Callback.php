@@ -50,8 +50,8 @@ class Callback extends AbstractAssertion
      */
     public function execute($subject)
     {
-        if ($this->issetProperty($subject)) {
-            $value = $this->getProperty($subject);
+        if ($this->issetProperty($subject, $this->getName())) {
+            $value = $this->getProperty($subject, $this->getName());
 
             if (! call_user_func($this->callback, $value)) {
                 return new Error($this->getMessage(), $this->getName());
