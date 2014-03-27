@@ -23,7 +23,7 @@ class Matches extends AbstractAssertion
      * @param string $matches
      * @param string $message
      */
-    public function __construct($name, $matches, $message = ':name matches :matches')
+    public function __construct($name, $matches, $message = ':name must match :matches')
     {
         $this->matches = (string) $matches;
 

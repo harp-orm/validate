@@ -71,7 +71,7 @@ class URL extends AbstractAssertion
      */
     public static function convertUtfUrl($url)
     {
-        $parts = parse_url($url);
+        $parts = (array) parse_url($url);
 
         if (isset($parts['host'])) {
             if (function_exists('idn_to_ascii')) {
