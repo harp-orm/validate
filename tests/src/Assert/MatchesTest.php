@@ -14,8 +14,8 @@ class MatchesTest extends AbstractTestCase
     {
         return array(
             array(array('temp' => 'test', 'temp2' => 'test'), 'temp', 'temp2', true),
-            array(array('temp' => 'test', 'temp2' => 's'), 'temp', 'temp2', 'temp matches temp2'),
-            array(array('temp' => 'test', 'temp2' => ''), 'temp', 'temp2', 'temp matches temp2'),
+            array(array('temp' => 'test', 'temp2' => 's'), 'temp', 'temp2', 'temp must match temp2'),
+            array(array('temp' => 'test', 'temp2' => ''), 'temp', 'temp2', 'temp must match temp2'),
             array(array(), 'temp', 'temp2', true),
         );
     }
