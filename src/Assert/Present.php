@@ -22,13 +22,18 @@ class Present extends AbstractAssertion
         parent::__construct($name, $message);
     }
 
+    public static function isValid($value)
+    {
+        return ($value !== null and $value !== false and $value !== '');
+    }
+
     /**
      * @param  object|array $subject
      * @return Error|null
      */
     public function execute($subject)
     {
-        if (! $this->issetProperty($subject)) {
+        if (! $this->issetProperty($subject) or ! self::isValid($this->getProperty($subject))) {
             return new Error($this->getMessage(), $this->getName());
         }
     }

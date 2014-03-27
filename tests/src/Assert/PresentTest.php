@@ -10,11 +10,40 @@ use stdClass;
  */
 class PresentTest extends AbstractTestCase
 {
+    public function dataIsValid()
+    {
+        return array(
+            array('10', true),
+            array('something', true),
+            array(new stdClass(), true),
+            array(array(), true),
+            array(0, true),
+            array('0', true),
+            array(false, false),
+            array(null, false),
+            array('', false),
+        );
+    }
+
+    /**
+     * @dataProvider dataIsValid
+     * @covers CL\Carpo\Assert\Present::isValid
+     */
+    public function testIsValid($value, $expected)
+    {
+        $this->assertSame($expected, Present::isValid($value));
+    }
+
     public function dataExecute()
     {
         return array(
             array('something', true),
             array(null, 'test must be present'),
+            array('', 'test must be present'),
+            array(false, 'test must be present'),
+            array(0, true),
+            array('0', true),
+            array(array(), true),
         );
     }
 
