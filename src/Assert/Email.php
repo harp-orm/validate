@@ -88,7 +88,7 @@ class Email extends AbstractAssertion
      */
     protected $type;
 
-    public function __construct($name, $type = EMAIL::NORMAL, $message = ':name should be a valid email')
+    public function __construct($name, $type = Email::NORMAL, $message = ':name should be a valid email')
     {
         $this->type = $type;
 
