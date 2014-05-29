@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\Callback;
+use Harp\Validate\Assert\Callback;
 
 /**
  * @group   assert.callback
@@ -27,7 +27,7 @@ class CallbackTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Callback::execute
+     * @covers Harp\Validate\Assert\Callback::execute
      */
     public function testExecute($value, $callback, $expected)
     {
@@ -37,8 +37,8 @@ class CallbackTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\Callback::__construct
-     * @covers CL\Carpo\Assert\Callback::getCallback
+     * @covers Harp\Validate\Assert\Callback::__construct
+     * @covers Harp\Validate\Assert\Callback::getCallback
      */
     public function testConstruct()
     {

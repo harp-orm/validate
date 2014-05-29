@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Assert;
+namespace Harp\Validate\Assert;
 
-use CL\Carpo\Error;
+use Harp\Validate\Error;
 
 /**
  * Assert that the value's string length is shorter than a set length. Uses mb_strlen() internally.

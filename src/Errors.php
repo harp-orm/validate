@@ -1,6 +1,6 @@
 <?php
 
-namespace CL\Carpo;
+namespace Harp\Validate;
 
 use Countable;
 use Iterator;

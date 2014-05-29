@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo;
+namespace Harp\Validate;
 
-use CL\Carpo\Assert\AbstractAssertion;
+use Harp\Validate\Assert\AbstractAssertion;
 use Countable;
 use Iterator;
 use SplObjectStorage;

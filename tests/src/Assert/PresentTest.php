@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\Present;
+use Harp\Validate\Assert\Present;
 use stdClass;
 
 /**
@@ -27,7 +27,7 @@ class PresentTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers CL\Carpo\Assert\Present::isValid
+     * @covers Harp\Validate\Assert\Present::isValid
      */
     public function testIsValid($value, $expected)
     {
@@ -49,7 +49,7 @@ class PresentTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Present::execute
+     * @covers Harp\Validate\Assert\Present::execute
      */
     public function testExecute($value, $expected)
     {

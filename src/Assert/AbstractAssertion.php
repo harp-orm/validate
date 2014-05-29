@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Assert;
+namespace Harp\Validate\Assert;
 
-use CL\Carpo\Error;
+use Harp\Validate\Error;
 
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>

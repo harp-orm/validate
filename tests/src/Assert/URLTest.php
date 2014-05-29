@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\URL;
+use Harp\Validate\Assert\URL;
 use stdClass;
 
 /**
@@ -61,7 +61,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataBuildUrl
-     * @covers CL\Carpo\Assert\URL::buildUrl
+     * @covers Harp\Validate\Assert\URL::buildUrl
      */
     public function testBuildUrl($url, $expected)
     {
@@ -96,7 +96,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataConvertUtfUrl
-     * @covers CL\Carpo\Assert\URL::convertUtfUrl
+     * @covers Harp\Validate\Assert\URL::convertUtfUrl
      */
     public function testConvertUtfUrl($url, $expected)
     {
@@ -141,7 +141,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers CL\Carpo\Assert\URL::isValid
+     * @covers Harp\Validate\Assert\URL::isValid
      */
     public function testIsValid($url, $expected)
     {
@@ -188,7 +188,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValidStrict
-     * @covers CL\Carpo\Assert\URL::isValidStrict
+     * @covers Harp\Validate\Assert\URL::isValidStrict
      */
     public function testIsValidStrict($url, $expected)
     {
@@ -210,7 +210,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\URL::execute
+     * @covers Harp\Validate\Assert\URL::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -221,8 +221,8 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\URL::__construct
-     * @covers CL\Carpo\Assert\URL::isStrict
+     * @covers Harp\Validate\Assert\URL::__construct
+     * @covers Harp\Validate\Assert\URL::isStrict
      */
     public function testConstruct()
     {

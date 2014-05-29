@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Error;
+use Harp\Validate\Error;
 use stdClass;
 
 /**
@@ -11,10 +11,10 @@ use stdClass;
 class ErrorTest extends AbstractTestCase
 {
     /**
-     * @covers CL\Carpo\Error::__construct
-     * @covers CL\Carpo\Error::getName
-     * @covers CL\Carpo\Error::getParameters
-     * @covers CL\Carpo\Error::getMessage
+     * @covers Harp\Validate\Error::__construct
+     * @covers Harp\Validate\Error::getName
+     * @covers Harp\Validate\Error::getParameters
+     * @covers Harp\Validate\Error::getMessage
      */
     public function testConstruct()
     {
@@ -32,7 +32,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Error::setName
+     * @covers Harp\Validate\Error::setName
      */
     public function testSetName()
     {
@@ -46,7 +46,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Error::getMessageParameters
+     * @covers Harp\Validate\Error::getMessageParameters
      */
     public function testGetMessageParameters()
     {
@@ -56,7 +56,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Error::getFullMessage
+     * @covers Harp\Validate\Error::getFullMessage
      */
     public function testGetFullMessage()
     {
@@ -66,8 +66,8 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Error::setTranslator
-     * @covers CL\Carpo\Error::getTranslator
+     * @covers Harp\Validate\Error::setTranslator
+     * @covers Harp\Validate\Error::getTranslator
      */
     public function testTranslator()
     {
@@ -95,7 +95,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Error::__toString
+     * @covers Harp\Validate\Error::__toString
      */
     public function testToString()
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Asserts;
-use CL\Carpo\Assert\AbstractAssertion;
-use CL\Carpo\Assert;
+use Harp\Validate\Asserts;
+use Harp\Validate\Assert\AbstractAssertion;
+use Harp\Validate\Assert;
 use stdClass;
 
 /**
@@ -13,24 +13,24 @@ use stdClass;
 class AssertsTest extends AbstractTestCase
 {
     /**
-     * @covers CL\Carpo\Asserts::__construct
-     * @covers CL\Carpo\Asserts::all
-     * @covers CL\Carpo\Asserts::add
-     * @covers CL\Carpo\Asserts::set
-     * @covers CL\Carpo\Asserts::next
-     * @covers CL\Carpo\Asserts::current
-     * @covers CL\Carpo\Asserts::valid
-     * @covers CL\Carpo\Asserts::count
-     * @covers CL\Carpo\Asserts::key
-     * @covers CL\Carpo\Asserts::rewind
-     * @covers CL\Carpo\Asserts::contains
-     * @covers CL\Carpo\Asserts::isEmpty
+     * @covers Harp\Validate\Asserts::__construct
+     * @covers Harp\Validate\Asserts::all
+     * @covers Harp\Validate\Asserts::add
+     * @covers Harp\Validate\Asserts::set
+     * @covers Harp\Validate\Asserts::next
+     * @covers Harp\Validate\Asserts::current
+     * @covers Harp\Validate\Asserts::valid
+     * @covers Harp\Validate\Asserts::count
+     * @covers Harp\Validate\Asserts::key
+     * @covers Harp\Validate\Asserts::rewind
+     * @covers Harp\Validate\Asserts::contains
+     * @covers Harp\Validate\Asserts::isEmpty
      */
     public function testConstruct()
     {
         $assertObjects = array(
-            $this->getMock('CL\Carpo\Assert\AbstractAssertion', array('execute'), array('name')),
-            $this->getMock('CL\Carpo\Assert\AbstractAssertion', array('execute'), array('name')),
+            $this->getMock('Harp\Validate\Assert\AbstractAssertion', array('execute'), array('name')),
+            $this->getMock('Harp\Validate\Assert\AbstractAssertion', array('execute'), array('name')),
         );
 
         $asserts = new Asserts($assertObjects);
@@ -63,9 +63,9 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Asserts::validate
-     * @covers CL\Carpo\Assert\AbstractAssertion::issetProperty
-     * @covers CL\Carpo\Assert\AbstractAssertion::getProperty
+     * @covers Harp\Validate\Asserts::validate
+     * @covers Harp\Validate\Assert\AbstractAssertion::issetProperty
+     * @covers Harp\Validate\Assert\AbstractAssertion::getProperty
      */
     public function testValidateObject()
     {
@@ -92,7 +92,7 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
-        $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
+        $this->assertContainsOnlyInstancesOf('Harp\Validate\Error', $errors);
 
         $expected = implode(', ', array(
             'user_email should be a valid email',
@@ -104,9 +104,9 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Asserts::validate
-     * @covers CL\Carpo\Assert\AbstractAssertion::issetProperty
-     * @covers CL\Carpo\Assert\AbstractAssertion::getProperty
+     * @covers Harp\Validate\Asserts::validate
+     * @covers Harp\Validate\Assert\AbstractAssertion::issetProperty
+     * @covers Harp\Validate\Assert\AbstractAssertion::getProperty
      */
     public function testValidateArray()
     {
@@ -133,7 +133,7 @@ class AssertsTest extends AbstractTestCase
 
         $errors = $asserts->validate($subject);
 
-        $this->assertContainsOnlyInstancesOf('CL\Carpo\Error', $errors);
+        $this->assertContainsOnlyInstancesOf('Harp\Validate\Error', $errors);
 
         $expected = implode(', ', array(
             'user_email should be a valid email',
@@ -145,7 +145,7 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Asserts::onlyFor
+     * @covers Harp\Validate\Asserts::onlyFor
      */
     public function testOnlyFor()
     {

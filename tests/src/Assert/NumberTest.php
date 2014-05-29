@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\Number;
+use Harp\Validate\Assert\Number;
 use stdClass;
 
 /**
@@ -30,7 +30,7 @@ class NumberTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers CL\Carpo\Assert\Number::isValid
+     * @covers Harp\Validate\Assert\Number::isValid
      */
     public function testIsValid($number, $type, $expected)
     {
@@ -49,7 +49,7 @@ class NumberTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Number::execute
+     * @covers Harp\Validate\Assert\Number::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -59,8 +59,8 @@ class NumberTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\Number::__construct
-     * @covers CL\Carpo\Assert\Number::getType
+     * @covers Harp\Validate\Assert\Number::__construct
+     * @covers Harp\Validate\Assert\Number::getType
      */
     public function testConstruct()
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Errors;
-use CL\Carpo\Error;
+use Harp\Validate\Errors;
+use Harp\Validate\Error;
 use stdClass;
 
 /**
@@ -12,19 +12,19 @@ use stdClass;
 class ErrorsTest extends AbstractTestCase
 {
     /**
-     * @covers CL\Carpo\Errors::__construct
-     * @covers CL\Carpo\Errors::all
-     * @covers CL\Carpo\Errors::add
-     * @covers CL\Carpo\Errors::set
-     * @covers CL\Carpo\Errors::next
-     * @covers CL\Carpo\Errors::current
-     * @covers CL\Carpo\Errors::valid
-     * @covers CL\Carpo\Errors::count
-     * @covers CL\Carpo\Errors::key
-     * @covers CL\Carpo\Errors::rewind
-     * @covers CL\Carpo\Errors::contains
-     * @covers CL\Carpo\Errors::isEmpty
-     * @covers CL\Carpo\Errors::getSubject
+     * @covers Harp\Validate\Errors::__construct
+     * @covers Harp\Validate\Errors::all
+     * @covers Harp\Validate\Errors::add
+     * @covers Harp\Validate\Errors::set
+     * @covers Harp\Validate\Errors::next
+     * @covers Harp\Validate\Errors::current
+     * @covers Harp\Validate\Errors::valid
+     * @covers Harp\Validate\Errors::count
+     * @covers Harp\Validate\Errors::key
+     * @covers Harp\Validate\Errors::rewind
+     * @covers Harp\Validate\Errors::contains
+     * @covers Harp\Validate\Errors::isEmpty
+     * @covers Harp\Validate\Errors::getSubject
      */
     public function testConstruct()
     {
@@ -65,7 +65,7 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Errors::humanize
+     * @covers Harp\Validate\Errors::humanize
      */
     public function testHumanize()
     {
@@ -82,7 +82,7 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Errors::onlyFor
+     * @covers Harp\Validate\Errors::onlyFor
      */
     public function testOnlyFor()
     {
@@ -103,13 +103,13 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Errors::__toString
+     * @covers Harp\Validate\Errors::__toString
      */
     public function testToString()
     {
         $subject = new stdClass();
 
-        $errors = $this->getMock('CL\Carpo\Errors', array('humanize'), array($subject));
+        $errors = $this->getMock('Harp\Validate\Errors', array('humanize'), array($subject));
 
         $errors
             ->expects($this->once())

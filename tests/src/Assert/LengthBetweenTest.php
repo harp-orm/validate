@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\LengthBetween;
+use Harp\Validate\Assert\LengthBetween;
 use stdClass;
 
 /**
@@ -28,7 +28,7 @@ class LengthBetweenTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\LengthBetween::execute
+     * @covers Harp\Validate\Assert\LengthBetween::execute
      */
     public function testExecute($value, $min, $max, $expected)
     {
@@ -38,9 +38,9 @@ class LengthBetweenTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\LengthBetween::__construct
-     * @covers CL\Carpo\Assert\LengthBetween::getMin
-     * @covers CL\Carpo\Assert\LengthBetween::getMax
+     * @covers Harp\Validate\Assert\LengthBetween::__construct
+     * @covers Harp\Validate\Assert\LengthBetween::getMin
+     * @covers Harp\Validate\Assert\LengthBetween::getMax
      */
     public function testConstruct()
     {

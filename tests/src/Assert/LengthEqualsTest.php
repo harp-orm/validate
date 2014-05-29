@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\LengthEquals;
+use Harp\Validate\Assert\LengthEquals;
 use stdClass;
 
 /**
@@ -22,7 +22,7 @@ class LengthEqualsTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\LengthEquals::execute
+     * @covers Harp\Validate\Assert\LengthEquals::execute
      */
     public function testExecute($value, $length, $expected)
     {
@@ -32,8 +32,8 @@ class LengthEqualsTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\LengthEquals::__construct
-     * @covers CL\Carpo\Assert\LengthEquals::getLength
+     * @covers Harp\Validate\Assert\LengthEquals::__construct
+     * @covers Harp\Validate\Assert\LengthEquals::getLength
      */
     public function testConstruct()
     {

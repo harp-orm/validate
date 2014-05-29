@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Assert;
+namespace Harp\Validate\Assert;
 
-use CL\Carpo\Error;
+use Harp\Validate\Error;
 
 /**
  * Will trigger an error if the value is empty

@@ -1,18 +1,18 @@
-Carpo
-=====
+Harp Validate
+=============
 
 [![Build Status](https://travis-ci.org/clippings/carpo.png?branch=master)](https://travis-ci.org/clippings/carpo)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/clippings/carpo/badges/quality-score.png?s=6e7541ce4d093a04ab800e34ac8c3135f7310ee2)](https://scrutinizer-ci.com/g/clippings/carpo/)
 [![Code Coverage](https://scrutinizer-ci.com/g/clippings/carpo/badges/coverage.png?s=bbf3d9afdb04d93f2492a0b83ded665c9362ea7b)](https://scrutinizer-ci.com/g/clippings/carpo/)
 [![Latest Stable Version](https://poser.pugx.org/clippings/carpo/v/stable.png)](https://packagist.org/packages/clippings/carpo)
 
-Carpo is a validation library. It generates errors for objects based on a predefined assertions.
+Harp Validate is a validation library. It generates errors for objects based on a predefined assertions.
 
 Quick Example:
 
 ```php
-use CL\Carpo\Assert;
-use CL\Carpo\Asserts;
+use Harp\Validate\Assert;
+use Harp\Validate\Asserts;
 
 $asserts = new Asserts(array(
     new Assert\Present('title'),

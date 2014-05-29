@@ -1,7 +1,7 @@
-<?php namespace CL\Carpo\Test;
+<?php namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\AbstractAssertion;
-use CL\Carpo\Error;
+use Harp\Validate\Assert\AbstractAssertion;
+use Harp\Validate\Error;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 

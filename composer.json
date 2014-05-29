@@ -1,5 +1,5 @@
 {
-    "name": "clippings/carpo",
+    "name": "harp-orm/validate",
     "description": "Object validaiton library",
     "license": "BSD-3-Clause",
     "authors": [
@@ -10,6 +10,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {"CL\\Carpo\\": "src/"}
+        "psr-4": {"Harp\\Validate\\": "src/"}
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Assert;
+namespace Harp\Validate\Assert;
 
-use CL\Carpo\Error;
+use Harp\Validate\Error;
 
 /**
  * Assert that the value's is a valid IP address uses filter_var() internally

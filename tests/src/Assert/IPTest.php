@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\IP;
+use Harp\Validate\Assert\IP;
 use stdClass;
 
 /**
@@ -22,7 +22,7 @@ class IPTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\IP::execute
+     * @covers Harp\Validate\Assert\IP::execute
      */
     public function testExecute($value, $expected)
     {

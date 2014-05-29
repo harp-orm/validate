@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\Email;
+use Harp\Validate\Assert\Email;
 use stdClass;
 
 /**
@@ -26,7 +26,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers CL\Carpo\Assert\Email::isValid
+     * @covers Harp\Validate\Assert\Email::isValid
      */
     public function testIsValid($email, $expected)
     {
@@ -49,7 +49,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValidStrict
-     * @covers CL\Carpo\Assert\Email::isValidStrict
+     * @covers Harp\Validate\Assert\Email::isValidStrict
      */
     public function testIsValidStrict($email, $expected)
     {
@@ -69,7 +69,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Email::execute
+     * @covers Harp\Validate\Assert\Email::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -80,8 +80,8 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Email::__construct
-     * @covers CL\Carpo\Assert\Email::isStrict
+     * @covers Harp\Validate\Assert\Email::__construct
+     * @covers Harp\Validate\Assert\Email::isStrict
      */
     public function testConstruct()
     {

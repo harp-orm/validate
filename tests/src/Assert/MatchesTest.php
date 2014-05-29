@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\Matches;
+use Harp\Validate\Assert\Matches;
 use stdClass;
 
 /**
@@ -22,7 +22,7 @@ class MatchesTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\Matches::execute
+     * @covers Harp\Validate\Assert\Matches::execute
      */
     public function testExecute($subject, $name, $matches, $expected)
     {
@@ -32,8 +32,8 @@ class MatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\Matches::__construct
-     * @covers CL\Carpo\Assert\Matches::getMatches
+     * @covers Harp\Validate\Assert\Matches::__construct
+     * @covers Harp\Validate\Assert\Matches::getMatches
      */
     public function testConstruct()
     {

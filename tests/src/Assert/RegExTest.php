@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\RegEx;
+use Harp\Validate\Assert\RegEx;
 use stdClass;
 
 /**
@@ -20,7 +20,7 @@ class RegExTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\RegEx::execute
+     * @covers Harp\Validate\Assert\RegEx::execute
      */
     public function testExecute($value, $pattern, $expected)
     {
@@ -30,8 +30,8 @@ class RegExTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\RegEx::__construct
-     * @covers CL\Carpo\Assert\RegEx::getPattern
+     * @covers Harp\Validate\Assert\RegEx::__construct
+     * @covers Harp\Validate\Assert\RegEx::getPattern
      */
     public function testConstruct()
     {

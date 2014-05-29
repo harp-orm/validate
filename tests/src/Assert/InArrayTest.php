@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\InArray;
+use Harp\Validate\Assert\InArray;
 
 /**
  * @group   assert.in_array
@@ -20,7 +20,7 @@ class InArrayTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\InArray::execute
+     * @covers Harp\Validate\Assert\InArray::execute
      */
     public function testExecute($value, $array, $expected)
     {
@@ -30,8 +30,8 @@ class InArrayTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\InArray::__construct
-     * @covers CL\Carpo\Assert\InArray::getArray
+     * @covers Harp\Validate\Assert\InArray::__construct
+     * @covers Harp\Validate\Assert\InArray::getArray
      */
     public function testConstruct()
     {

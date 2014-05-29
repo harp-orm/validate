@@ -1,8 +1,8 @@
 <?php
 
-namespace CL\Carpo\Test;
+namespace Harp\Validate\Test;
 
-use CL\Carpo\Assert\LengthLessThan;
+use Harp\Validate\Assert\LengthLessThan;
 use stdClass;
 
 /**
@@ -26,7 +26,7 @@ class LengthLessTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers CL\Carpo\Assert\LengthLessThan::execute
+     * @covers Harp\Validate\Assert\LengthLessThan::execute
      */
     public function testExecute($value, $length, $expected)
     {
@@ -36,8 +36,8 @@ class LengthLessTest extends AbstractTestCase
     }
 
     /**
-     * @covers CL\Carpo\Assert\LengthLessThan::__construct
-     * @covers CL\Carpo\Assert\LengthLessThan::getLength
+     * @covers Harp\Validate\Assert\LengthLessThan::__construct
+     * @covers Harp\Validate\Assert\LengthLessThan::getLength
      */
     public function testConstruct()
     {
