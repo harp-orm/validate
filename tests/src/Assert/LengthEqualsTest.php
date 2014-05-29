@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.length_equals
+ * @coversDefaultClass Harp\Validate\Assert\LengthEquals
  */
 class LengthEqualsTest extends AbstractTestCase
 {
@@ -22,7 +23,7 @@ class LengthEqualsTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\LengthEquals::execute
+     * @covers ::execute
      */
     public function testExecute($value, $length, $expected)
     {
@@ -32,8 +33,8 @@ class LengthEqualsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\LengthEquals::__construct
-     * @covers Harp\Validate\Assert\LengthEquals::getLength
+     * @covers ::__construct
+     * @covers ::getLength
      */
     public function testConstruct()
     {

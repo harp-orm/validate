@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.email
+ * @coversDefaultClass Harp\Validate\Assert\Email
  */
 class EmailTest extends AbstractTestCase
 {
@@ -26,7 +27,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers Harp\Validate\Assert\Email::isValid
+     * @covers ::isValid
      */
     public function testIsValid($email, $expected)
     {
@@ -49,7 +50,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValidStrict
-     * @covers Harp\Validate\Assert\Email::isValidStrict
+     * @covers ::isValidStrict
      */
     public function testIsValidStrict($email, $expected)
     {
@@ -69,7 +70,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Email::execute
+     * @covers ::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -80,8 +81,8 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Email::__construct
-     * @covers Harp\Validate\Assert\Email::isStrict
+     * @covers ::__construct
+     * @covers ::isStrict
      */
     public function testConstruct()
     {

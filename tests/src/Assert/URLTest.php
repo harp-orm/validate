@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.url
+ * @coversDefaultClass Harp\Validate\Assert\URL
  */
 class URLTest extends AbstractTestCase
 {
@@ -61,7 +62,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataBuildUrl
-     * @covers Harp\Validate\Assert\URL::buildUrl
+     * @covers ::buildUrl
      */
     public function testBuildUrl($url, $expected)
     {
@@ -96,7 +97,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataConvertUtfUrl
-     * @covers Harp\Validate\Assert\URL::convertUtfUrl
+     * @covers ::convertUtfUrl
      */
     public function testConvertUtfUrl($url, $expected)
     {
@@ -141,7 +142,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers Harp\Validate\Assert\URL::isValid
+     * @covers ::isValid
      */
     public function testIsValid($url, $expected)
     {
@@ -188,7 +189,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValidStrict
-     * @covers Harp\Validate\Assert\URL::isValidStrict
+     * @covers ::isValidStrict
      */
     public function testIsValidStrict($url, $expected)
     {
@@ -210,7 +211,7 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\URL::execute
+     * @covers ::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -221,8 +222,8 @@ class URLTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\URL::__construct
-     * @covers Harp\Validate\Assert\URL::isStrict
+     * @covers ::__construct
+     * @covers ::isStrict
      */
     public function testConstruct()
     {

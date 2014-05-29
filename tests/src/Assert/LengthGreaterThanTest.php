@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.length_greater_than
+ * @coversDefaultClass Harp\Validate\Assert\LengthGreaterThan
  */
 class LengthGreaterThanTest extends AbstractTestCase
 {
@@ -24,7 +25,7 @@ class LengthGreaterThanTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\LengthGreaterThan::execute
+     * @covers ::execute
      */
     public function testExecute($value, $length, $expected)
     {
@@ -34,8 +35,8 @@ class LengthGreaterThanTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\LengthGreaterThan::__construct
-     * @covers Harp\Validate\Assert\LengthGreaterThan::getLength
+     * @covers ::__construct
+     * @covers ::getLength
      */
     public function testConstruct()
     {

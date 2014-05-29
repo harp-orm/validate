@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.length_between
+ * @coversDefaultClass Harp\Validate\Assert\LengthBetween
  */
 class LengthBetweenTest extends AbstractTestCase
 {
@@ -28,7 +29,7 @@ class LengthBetweenTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\LengthBetween::execute
+     * @covers ::execute
      */
     public function testExecute($value, $min, $max, $expected)
     {
@@ -38,9 +39,9 @@ class LengthBetweenTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\LengthBetween::__construct
-     * @covers Harp\Validate\Assert\LengthBetween::getMin
-     * @covers Harp\Validate\Assert\LengthBetween::getMax
+     * @covers ::__construct
+     * @covers ::getMin
+     * @covers ::getMax
      */
     public function testConstruct()
     {

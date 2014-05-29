@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.ip
+ * @coversDefaultClass Harp\Validate\Assert\IP
  */
 class IPTest extends AbstractTestCase
 {
@@ -22,7 +23,7 @@ class IPTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\IP::execute
+     * @covers ::execute
      */
     public function testExecute($value, $expected)
     {

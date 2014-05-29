@@ -6,6 +6,7 @@ use Harp\Validate\Assert\InArray;
 
 /**
  * @group   assert.in_array
+ * @coversDefaultClass Harp\Validate\Assert\InArray
  */
 class InArrayTest extends AbstractTestCase
 {
@@ -20,7 +21,7 @@ class InArrayTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\InArray::execute
+     * @covers ::execute
      */
     public function testExecute($value, $array, $expected)
     {
@@ -30,8 +31,8 @@ class InArrayTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\InArray::__construct
-     * @covers Harp\Validate\Assert\InArray::getArray
+     * @covers ::__construct
+     * @covers ::getArray
      */
     public function testConstruct()
     {

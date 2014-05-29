@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.length_less_than
+ * @coversDefaultClass Harp\Validate\Assert\LengthLessThan
  */
 class LengthLessTest extends AbstractTestCase
 {
@@ -26,7 +27,7 @@ class LengthLessTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\LengthLessThan::execute
+     * @covers ::execute
      */
     public function testExecute($value, $length, $expected)
     {
@@ -36,8 +37,8 @@ class LengthLessTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\LengthLessThan::__construct
-     * @covers Harp\Validate\Assert\LengthLessThan::getLength
+     * @covers ::__construct
+     * @covers ::getLength
      */
     public function testConstruct()
     {

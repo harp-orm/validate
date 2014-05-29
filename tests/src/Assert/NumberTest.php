@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.number
+ * @coversDefaultClass Harp\Validate\Assert\Number
  */
 class NumberTest extends AbstractTestCase
 {
@@ -30,7 +31,7 @@ class NumberTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers Harp\Validate\Assert\Number::isValid
+     * @covers ::isValid
      */
     public function testIsValid($number, $type, $expected)
     {
@@ -49,7 +50,7 @@ class NumberTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Number::execute
+     * @covers ::execute
      */
     public function testExecute($value, $type, $expected)
     {
@@ -59,8 +60,8 @@ class NumberTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\Number::__construct
-     * @covers Harp\Validate\Assert\Number::getType
+     * @covers ::__construct
+     * @covers ::getType
      */
     public function testConstruct()
     {

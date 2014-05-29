@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.matches
+ * @coversDefaultClass Harp\Validate\Assert\Matches
  */
 class MatchesTest extends AbstractTestCase
 {
@@ -22,7 +23,7 @@ class MatchesTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Matches::execute
+     * @covers ::execute
      */
     public function testExecute($subject, $name, $matches, $expected)
     {
@@ -32,8 +33,8 @@ class MatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\Matches::__construct
-     * @covers Harp\Validate\Assert\Matches::getMatches
+     * @covers ::__construct
+     * @covers ::getMatches
      */
     public function testConstruct()
     {

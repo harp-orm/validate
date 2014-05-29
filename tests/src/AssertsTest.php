@@ -9,22 +9,23 @@ use stdClass;
 
 /**
  * @group   asserts
+ * @coversDefaultClass Harp\Validate\Asserts
  */
 class AssertsTest extends AbstractTestCase
 {
     /**
-     * @covers Harp\Validate\Asserts::__construct
-     * @covers Harp\Validate\Asserts::all
-     * @covers Harp\Validate\Asserts::add
-     * @covers Harp\Validate\Asserts::set
-     * @covers Harp\Validate\Asserts::next
-     * @covers Harp\Validate\Asserts::current
-     * @covers Harp\Validate\Asserts::valid
-     * @covers Harp\Validate\Asserts::count
-     * @covers Harp\Validate\Asserts::key
-     * @covers Harp\Validate\Asserts::rewind
-     * @covers Harp\Validate\Asserts::contains
-     * @covers Harp\Validate\Asserts::isEmpty
+     * @covers ::__construct
+     * @covers ::all
+     * @covers ::add
+     * @covers ::set
+     * @covers ::next
+     * @covers ::current
+     * @covers ::valid
+     * @covers ::count
+     * @covers ::key
+     * @covers ::rewind
+     * @covers ::contains
+     * @covers ::isEmpty
      */
     public function testConstruct()
     {
@@ -63,7 +64,7 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Asserts::validate
+     * @covers ::validate
      * @covers Harp\Validate\Assert\AbstractAssertion::issetProperty
      * @covers Harp\Validate\Assert\AbstractAssertion::getProperty
      */
@@ -104,7 +105,7 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Asserts::validate
+     * @covers ::validate
      * @covers Harp\Validate\Assert\AbstractAssertion::issetProperty
      * @covers Harp\Validate\Assert\AbstractAssertion::getProperty
      */
@@ -145,7 +146,7 @@ class AssertsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Asserts::onlyFor
+     * @covers ::onlyFor
      */
     public function testOnlyFor()
     {

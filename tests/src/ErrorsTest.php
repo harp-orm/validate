@@ -8,23 +8,24 @@ use stdClass;
 
 /**
  * @group   errors
+ * @coversDefaultClass Harp\Validate\Errors
  */
 class ErrorsTest extends AbstractTestCase
 {
     /**
-     * @covers Harp\Validate\Errors::__construct
-     * @covers Harp\Validate\Errors::all
-     * @covers Harp\Validate\Errors::add
-     * @covers Harp\Validate\Errors::set
-     * @covers Harp\Validate\Errors::next
-     * @covers Harp\Validate\Errors::current
-     * @covers Harp\Validate\Errors::valid
-     * @covers Harp\Validate\Errors::count
-     * @covers Harp\Validate\Errors::key
-     * @covers Harp\Validate\Errors::rewind
-     * @covers Harp\Validate\Errors::contains
-     * @covers Harp\Validate\Errors::isEmpty
-     * @covers Harp\Validate\Errors::getSubject
+     * @covers ::__construct
+     * @covers ::all
+     * @covers ::add
+     * @covers ::set
+     * @covers ::next
+     * @covers ::current
+     * @covers ::valid
+     * @covers ::count
+     * @covers ::key
+     * @covers ::rewind
+     * @covers ::contains
+     * @covers ::isEmpty
+     * @covers ::getSubject
      */
     public function testConstruct()
     {
@@ -65,7 +66,7 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Errors::humanize
+     * @covers ::humanize
      */
     public function testHumanize()
     {
@@ -82,7 +83,7 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Errors::onlyFor
+     * @covers ::onlyFor
      */
     public function testOnlyFor()
     {
@@ -103,7 +104,7 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Errors::__toString
+     * @covers ::__toString
      */
     public function testToString()
     {

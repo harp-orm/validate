@@ -6,6 +6,7 @@ use Harp\Validate\Assert\Callback;
 
 /**
  * @group   assert.callback
+ * @coversDefaultClass Harp\Validate\Assert\Callback
  */
 class CallbackTest extends AbstractTestCase
 {
@@ -27,7 +28,7 @@ class CallbackTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Callback::execute
+     * @covers ::execute
      */
     public function testExecute($value, $callback, $expected)
     {
@@ -37,8 +38,8 @@ class CallbackTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\Callback::__construct
-     * @covers Harp\Validate\Assert\Callback::getCallback
+     * @covers ::__construct
+     * @covers ::getCallback
      */
     public function testConstruct()
     {

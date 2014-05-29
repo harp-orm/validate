@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.present
+ * @coversDefaultClass Harp\Validate\Assert\Present
  */
 class PresentTest extends AbstractTestCase
 {
@@ -27,7 +28,7 @@ class PresentTest extends AbstractTestCase
 
     /**
      * @dataProvider dataIsValid
-     * @covers Harp\Validate\Assert\Present::isValid
+     * @covers ::isValid
      */
     public function testIsValid($value, $expected)
     {
@@ -49,7 +50,7 @@ class PresentTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\Present::execute
+     * @covers ::execute
      */
     public function testExecute($value, $expected)
     {

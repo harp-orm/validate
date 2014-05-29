@@ -7,14 +7,15 @@ use stdClass;
 
 /**
  * @group   error
+ * @coversDefaultClass Harp\Validate\Error
  */
 class ErrorTest extends AbstractTestCase
 {
     /**
-     * @covers Harp\Validate\Error::__construct
-     * @covers Harp\Validate\Error::getName
-     * @covers Harp\Validate\Error::getParameters
-     * @covers Harp\Validate\Error::getMessage
+     * @covers ::__construct
+     * @covers ::getName
+     * @covers ::getParameters
+     * @covers ::getMessage
      */
     public function testConstruct()
     {
@@ -32,7 +33,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Error::setName
+     * @covers ::setName
      */
     public function testSetName()
     {
@@ -46,7 +47,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Error::getMessageParameters
+     * @covers ::getMessageParameters
      */
     public function testGetMessageParameters()
     {
@@ -56,7 +57,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Error::getFullMessage
+     * @covers ::getFullMessage
      */
     public function testGetFullMessage()
     {
@@ -66,8 +67,8 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Error::setTranslator
-     * @covers Harp\Validate\Error::getTranslator
+     * @covers ::setTranslator
+     * @covers ::getTranslator
      */
     public function testTranslator()
     {
@@ -95,7 +96,7 @@ class ErrorTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Error::__toString
+     * @covers ::__toString
      */
     public function testToString()
     {

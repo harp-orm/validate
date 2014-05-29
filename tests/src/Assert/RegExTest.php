@@ -7,6 +7,7 @@ use stdClass;
 
 /**
  * @group   assert.reg_ex
+ * @coversDefaultClass Harp\Validate\Assert\RegEx
  */
 class RegExTest extends AbstractTestCase
 {
@@ -20,7 +21,7 @@ class RegExTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers Harp\Validate\Assert\RegEx::execute
+     * @covers ::execute
      */
     public function testExecute($value, $pattern, $expected)
     {
@@ -30,8 +31,8 @@ class RegExTest extends AbstractTestCase
     }
 
     /**
-     * @covers Harp\Validate\Assert\RegEx::__construct
-     * @covers Harp\Validate\Assert\RegEx::getPattern
+     * @covers ::__construct
+     * @covers ::getPattern
      */
     public function testConstruct()
     {
