@@ -4,7 +4,11 @@ php:
   - 5.3
   - 5.4
   - 5.5
-  - hhvm
+  - hhvm-nightly
+
+matrix:
+  allow_failures:
+    - php: hhvm-nightly
 
 before_install:
   - composer selfupdate
