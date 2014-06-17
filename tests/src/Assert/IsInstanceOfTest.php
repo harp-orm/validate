@@ -43,7 +43,7 @@ class IsInstanceOfTest extends AbstractTestCase
         $this->assertEquals('test', $assertion->getName());
         $this->assertEquals('custom message', $assertion->getMessage());
 
-        $this->setExpectedException('InvalidArgumentException', 'adsasd should be a valid class');
+        $this->setExpectedException('InvalidArgumentException', 'adsasd should be a valid class or interface');
 
         new IsInstanceOf('test', 'adsasd');
     }
