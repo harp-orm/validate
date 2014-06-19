@@ -15,12 +15,16 @@ class NumberTest extends AbstractTestCase
     {
         return array(
             array('10', Number::INTEGER, true),
+            array(10, Number::INTEGER, true),
             array('1111110', Number::INTEGER, true),
             array('100,2000', Number::INTEGER, false),
             array('10.3', Number::INTEGER, false),
+            array(10.3, Number::INTEGER, false),
             array('name', Number::INTEGER, false),
             array('/sadfasfdask5843cm', Number::INTEGER, false),
             array('10.2', Number::FLOAT, true),
+            array(10.2, Number::FLOAT, true),
+            array(10, Number::FLOAT, true),
             array('10.20', Number::FLOAT, true),
             array('ass10.20', Number::FLOAT, false),
             array('20.back', Number::FLOAT, false),

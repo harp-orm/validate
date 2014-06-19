@@ -26,7 +26,7 @@ class Number extends AbstractAssertion
     {
         switch ($type) {
             case self::INTEGER:
-                return ctype_digit($value);
+                return (is_integer($value) or ctype_digit($value));
 
             case self::FLOAT:
                 return is_numeric($value);
