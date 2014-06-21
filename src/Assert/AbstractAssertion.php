@@ -49,7 +49,7 @@ abstract class AbstractAssertion
 
     /**
      * @param  object|array $subject
-     * @param  string $name
+     * @param  string       $name
      * @return boolean
      */
     public function issetProperty($subject, $name)
@@ -59,7 +59,7 @@ abstract class AbstractAssertion
 
     /**
      * @param  object|array $subject
-     * @param  string $name
+     * @param  string       $name
      * @return mixed
      */
     public function getProperty($subject, $name)

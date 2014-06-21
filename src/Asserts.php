@@ -115,7 +115,7 @@ class Asserts implements Iterator, Countable
     }
 
     /**
-     * @param  string $name
+     * @param  string  $name
      * @return Asserts
      */
     public function onlyFor($name)
@@ -133,7 +133,7 @@ class Asserts implements Iterator, Countable
 
     /**
      * @param  object|array $subject
-     * @return Errors        array of error objects
+     * @return Errors       array of error objects
      */
     public function validate($subject)
     {

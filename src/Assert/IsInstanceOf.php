@@ -16,7 +16,7 @@ use InvalidArgumentException;
 class IsInstanceOf extends AbstractAssertion
 {
     /**
-     * @var class
+     * @var string
      */
     protected $class;
 
@@ -27,7 +27,7 @@ class IsInstanceOf extends AbstractAssertion
      */
     public function __construct($name, $class, $message = ':name is invalid')
     {
-        if (! class_exists($class) AND ! interface_exists($class)) {
+        if (! class_exists($class) and ! interface_exists($class)) {
             throw new InvalidArgumentException(
                 sprintf('%s should be a valid class or interface', $class)
             );

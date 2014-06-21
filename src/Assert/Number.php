@@ -18,8 +18,8 @@ class Number extends AbstractAssertion
     const FLOAT = 2;
 
     /**
-     * @param  integer  $type  Number::INTEGER or Number::FLOAT
-     * @param  string  $value
+     * @param  integer      $type  Number::INTEGER or Number::FLOAT
+     * @param  string       $value
      * @return boolean|null
      */
     public static function isValid($type, $value)
