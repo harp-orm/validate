@@ -16,14 +16,14 @@ class CallbackTest extends AbstractTestCase
             return $value === 'test12';
         };
 
-        return array(
-            array('10', 'is_numeric', true),
-            array('black', 'is_numeric', 'test is invalid'),
-            array(10, 'is_int', true),
-            array('black', 'is_int', 'test is invalid'),
-            array('test12', $closure, true),
-            array('test122', $closure, 'test is invalid'),
-        );
+        return [
+            ['10', 'is_numeric', true],
+            ['black', 'is_numeric', 'test is invalid'],
+            [10, 'is_int', true],
+            ['black', 'is_int', 'test is invalid'],
+            ['test12', $closure, true],
+            ['test122', $closure, 'test is invalid'],
+        ];
     }
 
     /**

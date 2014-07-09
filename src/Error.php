@@ -94,7 +94,7 @@ class Error
     public function getMessageParameters()
     {
         return array_merge(
-            array(':name' => $this->name),
+            [':name' => $this->name],
             $this->parameters
         );
     }

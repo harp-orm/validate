@@ -69,7 +69,7 @@ class LengthBetween extends AbstractAssertion
             $length = mb_strlen($value, mb_detect_encoding($value));
 
             if ($length < $this->min || $length > $this->max) {
-                $parameters = array(':min' => $this->min, ':max' => $this->max);
+                $parameters = [':min' => $this->min, ':max' => $this->max];
 
                 return new Error($this->getMessage(), $this->getName(), $parameters);
             }

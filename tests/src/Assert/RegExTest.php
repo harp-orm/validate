@@ -13,10 +13,10 @@ class RegExTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('something', '/\w/', true),
-            array('something more', '/^\w$/', 'test is invalid'),
-        );
+        return [
+            ['something', '/\w/', true],
+            ['something more', '/^\w$/', 'test is invalid'],
+        ];
     }
 
     /**

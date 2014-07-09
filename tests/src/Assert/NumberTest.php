@@ -13,24 +13,24 @@ class NumberTest extends AbstractTestCase
 {
     public function dataIsValid()
     {
-        return array(
-            array('10', Number::INTEGER, true),
-            array(10, Number::INTEGER, true),
-            array('1111110', Number::INTEGER, true),
-            array('100,2000', Number::INTEGER, false),
-            array('10.3', Number::INTEGER, false),
-            array(10.3, Number::INTEGER, false),
-            array('name', Number::INTEGER, false),
-            array('/sadfasfdask5843cm', Number::INTEGER, false),
-            array('10.2', Number::FLOAT, true),
-            array(10.2, Number::FLOAT, true),
-            array(10, Number::FLOAT, true),
-            array('10.20', Number::FLOAT, true),
-            array('ass10.20', Number::FLOAT, false),
-            array('20.back', Number::FLOAT, false),
-            array('20,20', Number::FLOAT, false),
-            array('20,20', null, null),
-        );
+        return [
+            ['10', Number::INTEGER, true],
+            [10, Number::INTEGER, true],
+            ['1111110', Number::INTEGER, true],
+            ['100,2000', Number::INTEGER, false],
+            ['10.3', Number::INTEGER, false],
+            [10.3, Number::INTEGER, false],
+            ['name', Number::INTEGER, false],
+            ['/sadfasfdask5843cm', Number::INTEGER, false],
+            ['10.2', Number::FLOAT, true],
+            [10.2, Number::FLOAT, true],
+            [10, Number::FLOAT, true],
+            ['10.20', Number::FLOAT, true],
+            ['ass10.20', Number::FLOAT, false],
+            ['20.back', Number::FLOAT, false],
+            ['20,20', Number::FLOAT, false],
+            ['20,20', null, null],
+        ];
     }
 
     /**
@@ -44,12 +44,12 @@ class NumberTest extends AbstractTestCase
 
     public function dataExecute()
     {
-        return array(
-            array('10', Number::INTEGER, true),
-            array('10.2', Number::INTEGER, 'test is an invalid number'),
-            array('10.2', Number::FLOAT, true),
-            array('black', Number::FLOAT, 'test is an invalid number'),
-        );
+        return [
+            ['10', Number::INTEGER, true],
+            ['10.2', Number::INTEGER, 'test is an invalid number'],
+            ['10.2', Number::FLOAT, true],
+            ['black', Number::FLOAT, 'test is an invalid number'],
+        ];
     }
 
     /**

@@ -13,51 +13,51 @@ class URLTest extends AbstractTestCase
 {
     public function dataBuildUrl()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'scheme' => 'http',
                     'host' => 'example.com'
-                ),
+                ],
                 'http://example.com',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'scheme' => 'http',
                     'host' => 'example.com',
                     'path' => '/test',
-                ),
+                ],
                 'http://example.com/test',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'scheme' => 'http',
                     'user' => 'user',
                     'host' => 'example.com',
-                ),
+                ],
                 'http://user@example.com',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'scheme' => 'http',
                     'user' => 'user',
                     'pass' => 'pass',
                     'host' => 'example.com',
-                ),
+                ],
                 'http://user:pass@example.com',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'scheme' => 'https',
                     'host' => 'www.example.com',
                     'port' => '8882',
                     'path' => '/foo',
                     'query' => 'bar=10',
                     'fragment' => 'test',
-                ),
+                ],
                 'https://www.example.com:8882/foo?bar=10#test',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -71,28 +71,28 @@ class URLTest extends AbstractTestCase
 
     public function dataConvertUtfUrl()
     {
-        return array(
-            array(
+        return [
+            [
                 'http://example.com',
                 'http://example.com'
-            ),
-            array(
+            ],
+            [
                 'http://example.com?да=тест',
                 'http://example.com?%D0%B4%D0%B0=%D1%82%D0%B5%D1%81%D1%82'
-            ),
-            array(
+            ],
+            [
                 'http://яндекс.рф',
                 'http://xn--d1acpjx3f.xn--p1ai'
-            ),
-            array(
+            ],
+            [
                 'http://foo.com/unicode_(✪)_in_parens',
                 'http://foo.com/unicode_%28%E2%9C%AA%29_in_parens'
-            ),
-            array(
+            ],
+            [
                 'https://www.example.com/foo/?bar=baz&inga=42&quux#example',
                 'https://www.example.com/foo/?bar=baz&inga=42&quux=#example'
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -106,38 +106,38 @@ class URLTest extends AbstractTestCase
 
     public function dataIsValid()
     {
-        return array(
-            array('http://example.com', true),
-            array('http://www.example.com/test.html', true),
-            array('http://яндекс.рф', true),
-            array('https://www.example.com/test.html', true),
-            array('bitcoin://www.example.com/test.html', true),
-            array('chrome://history', true),
-            array('http://user:pass@www.example.com', true),
-            array('http://user:@pass@www.example.com', true),
-            array('http://userid:password@example.com/', true),
-            array('http://user:pa:ss@www.example.com', true),
-            array('http://user@www.example.com', true),
-            array('http://142.42.1.1:8080/', true),
-            array('http://foo.com/blah_(wikipedia)#cite-1', true),
-            array('http://www.example.com/wpstyle/?p=364', true),
-            array('https://www.example.com/foo/?bar=baz&inga=42&quux', true),
-            array('http://foo.bar/?q=Test%20URL-encoded%20stuff', true),
-            array('http://foo.com/unicode_(✪)_in_parens', true),
-            array('ftp://example-example.co.uk', true),
-            array('ftp://90.190.32.12', true),
-            array('ftp://90.190.32.12/test.html', true),
-            array('http://'.str_pad('example-', 50, 'a').'.com', true),
-            array('http://foo.bar?q=Should allow spaces in query', true),
-            array('http://">bla</a><script>alert(\'XSS\');</script>', false),
-            array('//', false),
-            array('http://#', false),
-            array('http:///', false),
-            array('http://'.str_pad('example-', 70, 'a').'.com', false),
-            array(':// should fail', false),
-            array('http://.www.foo.bar/', false),
-            array('http://.www.foo.bar./', false),
-        );
+        return [
+            ['http://example.com', true],
+            ['http://www.example.com/test.html', true],
+            ['http://яндекс.рф', true],
+            ['https://www.example.com/test.html', true],
+            ['bitcoin://www.example.com/test.html', true],
+            ['chrome://history', true],
+            ['http://user:pass@www.example.com', true],
+            ['http://user:@pass@www.example.com', true],
+            ['http://userid:password@example.com/', true],
+            ['http://user:pa:ss@www.example.com', true],
+            ['http://user@www.example.com', true],
+            ['http://142.42.1.1:8080/', true],
+            ['http://foo.com/blah_(wikipedia)#cite-1', true],
+            ['http://www.example.com/wpstyle/?p=364', true],
+            ['https://www.example.com/foo/?bar=baz&inga=42&quux', true],
+            ['http://foo.bar/?q=Test%20URL-encoded%20stuff', true],
+            ['http://foo.com/unicode_(✪)_in_parens', true],
+            ['ftp://example-example.co.uk', true],
+            ['ftp://90.190.32.12', true],
+            ['ftp://90.190.32.12/test.html', true],
+            ['http://'.str_pad('example-', 50, 'a').'.com', true],
+            ['http://foo.bar?q=Should allow spaces in query', true],
+            ['http://">bla</a><script>alert(\'XSS\');</script>', false],
+            ['//', false],
+            ['http://#', false],
+            ['http:///', false],
+            ['http://'.str_pad('example-', 70, 'a').'.com', false],
+            [':// should fail', false],
+            ['http://.www.foo.bar/', false],
+            ['http://.www.foo.bar./', false],
+        ];
     }
 
     /**
@@ -151,40 +151,40 @@ class URLTest extends AbstractTestCase
 
     public function dataIsValidStrict()
     {
-        return array(
+        return [
 
             // Strictly invalid
-            array('http://яндекс.рф', false),
+            ['http://яндекс.рф', false],
 
             // Strictly valid
-            array('http://'.str_pad('example-', 70, 'a').'.com', true),
-            array('http://example.com', true),
-            array('http://www.example.com/test.html', true),
-            array('https://www.example.com/test.html', true),
-            array('bitcoin://www.example.com/test.html', true),
-            array('chrome://history', true),
-            array('http://user:pass@www.example.com', true),
-            array('http://user:@pass@www.example.com', true),
-            array('http://userid:password@example.com/', true),
-            array('http://user:pa:ss@www.example.com', true),
-            array('http://user@www.example.com', true),
-            array('http://142.42.1.1:8080/', true),
-            array('http://foo.com/blah_(wikipedia)#cite-1', true),
-            array('http://www.example.com/wpstyle/?p=364', true),
-            array('https://www.example.com/foo/?bar=baz&inga=42&quux', true),
-            array('http://foo.bar/?q=Test%20URL-encoded%20stuff', true),
-            array('ftp://example-example.co.uk', true),
-            array('ftp://90.190.32.12', true),
-            array('ftp://90.190.32.12/test.html', true),
-            array('http://'.str_pad('example-', 50, 'a').'.com', true),
-            array('http://">bla</a><script>alert(\'XSS\');</script>', false),
-            array('//', false),
-            array('http://#', false),
-            array('http:///', false),
-            array(':// should fail', false),
-            array('http://.www.foo.bar/', false),
-            array('http://.www.foo.bar./', false),
-        );
+            ['http://'.str_pad('example-', 70, 'a').'.com', true],
+            ['http://example.com', true],
+            ['http://www.example.com/test.html', true],
+            ['https://www.example.com/test.html', true],
+            ['bitcoin://www.example.com/test.html', true],
+            ['chrome://history', true],
+            ['http://user:pass@www.example.com', true],
+            ['http://user:@pass@www.example.com', true],
+            ['http://userid:password@example.com/', true],
+            ['http://user:pa:ss@www.example.com', true],
+            ['http://user@www.example.com', true],
+            ['http://142.42.1.1:8080/', true],
+            ['http://foo.com/blah_(wikipedia)#cite-1', true],
+            ['http://www.example.com/wpstyle/?p=364', true],
+            ['https://www.example.com/foo/?bar=baz&inga=42&quux', true],
+            ['http://foo.bar/?q=Test%20URL-encoded%20stuff', true],
+            ['ftp://example-example.co.uk', true],
+            ['ftp://90.190.32.12', true],
+            ['ftp://90.190.32.12/test.html', true],
+            ['http://'.str_pad('example-', 50, 'a').'.com', true],
+            ['http://">bla</a><script>alert(\'XSS\');</script>', false],
+            ['//', false],
+            ['http://#', false],
+            ['http:///', false],
+            [':// should fail', false],
+            ['http://.www.foo.bar/', false],
+            ['http://.www.foo.bar./', false],
+        ];
     }
 
     /**
@@ -198,15 +198,15 @@ class URLTest extends AbstractTestCase
 
     public function dataExecute()
     {
-        return array(
-            array('http://example.com', URL::NORMAL, true),
-            array('http://user:pass@www.example.com', URL::NORMAL, true),
-            array('example', URL::NORMAL, 'test should be a valid URL address'),
-            array('http://foo.com/unicode_(✪)_in_parens', URL::NORMAL, true),
-            array('http://user:pass@www.example.com', URL::STRICT, true),
-            array('http://example.com', URL::STRICT, true),
-            array('http://яндекс.ru/unicode_(✪)_in_parens', URL::STRICT, 'test should be a valid URL address'),
-        );
+        return [
+            ['http://example.com', URL::NORMAL, true],
+            ['http://user:pass@www.example.com', URL::NORMAL, true],
+            ['example', URL::NORMAL, 'test should be a valid URL address'],
+            ['http://foo.com/unicode_(✪)_in_parens', URL::NORMAL, true],
+            ['http://user:pass@www.example.com', URL::STRICT, true],
+            ['http://example.com', URL::STRICT, true],
+            ['http://яндекс.ru/unicode_(✪)_in_parens', URL::STRICT, 'test should be a valid URL address'],
+        ];
     }
 
     /**

@@ -13,12 +13,12 @@ class IPTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('210.132.31.43', true),
-            array('210.132.31.4323', 'test is invalid'),
-            array('skfsldf', 'test is invalid'),
-            array('192.168.0.1', 'test is invalid'),
-        );
+        return [
+            ['210.132.31.43', true],
+            ['210.132.31.4323', 'test is invalid'],
+            ['skfsldf', 'test is invalid'],
+            ['192.168.0.1', 'test is invalid'],
+        ];
     }
 
     /**

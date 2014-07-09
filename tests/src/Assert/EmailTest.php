@@ -13,16 +13,16 @@ class EmailTest extends AbstractTestCase
 {
     public function dataIsValid()
     {
-        return array(
-            array('test@example.com', true),
-            array('test+test@example.com', true),
-            array('test+132test@example99.co.uk', true),
-            array('_somename@example.com', true),
-            array('Ahmed.Kemal@google.com', true),
-            array('"Abc@def"@example.com', false),
-            array('customer/department=shipping@example.com', false),
-            array('"Abc\@def"@example.com', false),
-        );
+        return [
+            ['test@example.com', true],
+            ['test+test@example.com', true],
+            ['test+132test@example99.co.uk', true],
+            ['_somename@example.com', true],
+            ['Ahmed.Kemal@google.com', true],
+            ['"Abc@def"@example.com', false],
+            ['customer/department=shipping@example.com', false],
+            ['"Abc\@def"@example.com', false],
+        ];
     }
 
     /**
@@ -36,16 +36,16 @@ class EmailTest extends AbstractTestCase
 
     public function dataIsValidStrict()
     {
-        return array(
-            array('test@example.com', true),
-            array('test+test@example.com', true),
-            array('test+132test@example99.co.uk', true),
-            array('_somename@example.com', true),
-            array('Ahmed.Kemal@google.com', true),
-            array('"Abc@def"@example.com', true),
-            array('customer/department=shipping@example.com', true),
-            array('"Abc\@def"@example.com', true),
-        );
+        return [
+            ['test@example.com', true],
+            ['test+test@example.com', true],
+            ['test+132test@example99.co.uk', true],
+            ['_somename@example.com', true],
+            ['Ahmed.Kemal@google.com', true],
+            ['"Abc@def"@example.com', true],
+            ['customer/department=shipping@example.com', true],
+            ['"Abc\@def"@example.com', true],
+        ];
     }
 
     /**
@@ -59,13 +59,13 @@ class EmailTest extends AbstractTestCase
 
     public function dataExecute()
     {
-        return array(
-            array('test@example.com', Email::NORMAL, true),
-            array('test+test@example.com', Email::NORMAL, true),
-            array('test', Email::NORMAL, 'test should be a valid email'),
-            array('"Abc\@def"@example.com', Email::NORMAL, 'test should be a valid email'),
-            array('"Abc\@def"@example.com', Email::STRICT, true),
-        );
+        return [
+            ['test@example.com', Email::NORMAL, true],
+            ['test+test@example.com', Email::NORMAL, true],
+            ['test', Email::NORMAL, 'test should be a valid email'],
+            ['"Abc\@def"@example.com', Email::NORMAL, 'test should be a valid email'],
+            ['"Abc\@def"@example.com', Email::STRICT, true],
+        ];
     }
 
     /**

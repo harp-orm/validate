@@ -13,17 +13,17 @@ class PresentTest extends AbstractTestCase
 {
     public function dataIsValid()
     {
-        return array(
-            array('10', true),
-            array('something', true),
-            array(new stdClass(), true),
-            array(array(), true),
-            array(0, true),
-            array('0', true),
-            array(false, false),
-            array(null, false),
-            array('', false),
-        );
+        return [
+            ['10', true],
+            ['something', true],
+            [new stdClass(), true],
+            [[], true],
+            [0, true],
+            ['0', true],
+            [false, false],
+            [null, false],
+            ['', false],
+        ];
     }
 
     /**
@@ -37,15 +37,15 @@ class PresentTest extends AbstractTestCase
 
     public function dataExecute()
     {
-        return array(
-            array('something', true),
-            array(null, 'test must be present'),
-            array('', 'test must be present'),
-            array(false, 'test must be present'),
-            array(0, true),
-            array('0', true),
-            array(new stdClass(), true),
-        );
+        return [
+            ['something', true],
+            [null, 'test must be present'],
+            ['', 'test must be present'],
+            [false, 'test must be present'],
+            [0, true],
+            ['0', true],
+            [new stdClass(), true],
+        ];
     }
 
     /**

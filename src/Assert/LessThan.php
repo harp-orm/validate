@@ -48,7 +48,7 @@ class LessThan extends AbstractAssertion
             $value = $this->getProperty($subject, $this->getName());
 
             if ($value >= $this->value) {
-                $parameters = array(':value' => $this->value);
+                $parameters = [':value' => $this->value];
 
                 return new Error($this->getMessage(), $this->getName(), $parameters);
             }

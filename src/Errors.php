@@ -110,7 +110,7 @@ class Errors implements Iterator, Countable
      */
     public function set(array $errors)
     {
-        array_walk($errors, array($this, 'add'));
+        array_walk($errors, [$this, 'add']);
 
         return $this;
     }

@@ -13,16 +13,16 @@ class LengthLessTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('something', 20, true),
-            array('something', 10, true),
-            array('something', 9, 'test should be less than 9 letters'),
-            array('something', 4, 'test should be less than 4 letters'),
-            array('тест', 10, true),
-            array('тест', 5, true),
-            array('тест', 4, 'test should be less than 4 letters'),
-            array('тест', 3, 'test should be less than 3 letters'),
-        );
+        return [
+            ['something', 20, true],
+            ['something', 10, true],
+            ['something', 9, 'test should be less than 9 letters'],
+            ['something', 4, 'test should be less than 4 letters'],
+            ['тест', 10, true],
+            ['тест', 5, true],
+            ['тест', 4, 'test should be less than 4 letters'],
+            ['тест', 3, 'test should be less than 3 letters'],
+        ];
     }
 
     /**

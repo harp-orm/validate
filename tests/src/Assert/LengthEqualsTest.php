@@ -13,12 +13,12 @@ class LengthEqualsTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('something', 2, 'test should be 2 letters'),
-            array('something', 9, true),
-            array('тест', 4, true),
-            array('тест', 0, 'test should be 0 letters'),
-        );
+        return [
+            ['something', 2, 'test should be 2 letters'],
+            ['something', 9, true],
+            ['тест', 4, true],
+            ['тест', 0, 'test should be 0 letters'],
+        ];
     }
 
     /**

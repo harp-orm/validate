@@ -13,14 +13,14 @@ class GreaterThanTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array(9, 4, true),
-            array(9, 10, 'test should be greater than 10'),
-            array(9, 9, 'test should be greater than 9'),
-            array(5, 4.3, true),
-            array(9, 9.66, 'test should be greater than 9.66'),
-            array(20.12, 9.2, true),
-        );
+        return [
+            [9, 4, true],
+            [9, 10, 'test should be greater than 10'],
+            [9, 9, 'test should be greater than 9'],
+            [5, 4.3, true],
+            [9, 9.66, 'test should be greater than 9.66'],
+            [20.12, 9.2, true],
+        ];
     }
 
     /**

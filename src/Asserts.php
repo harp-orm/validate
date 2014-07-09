@@ -84,7 +84,7 @@ class Asserts implements Iterator, Countable
      */
     public function set(array $asserts)
     {
-        array_walk($asserts, array($this, 'add'));
+        array_walk($asserts, [$this, 'add']);
 
         return $this;
     }

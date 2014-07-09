@@ -12,11 +12,11 @@ class InArrayTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('10', array('10', '20'), true),
-            array('20', array('10', '20'), true),
-            array('30', array('10', '20'), 'test is invalid'),
-        );
+        return [
+            ['10', ['10', '20'], true],
+            ['20', ['10', '20'], true],
+            ['30', ['10', '20'], 'test is invalid'],
+        ];
     }
 
     /**
@@ -36,14 +36,14 @@ class InArrayTest extends AbstractTestCase
      */
     public function testConstruct()
     {
-        $assertion = new InArray('test', array('test1', 'test2'), 'custom message');
+        $assertion = new InArray('test', ['test1', 'test2'], 'custom message');
 
-        $this->assertEquals(array('test1', 'test2'), $assertion->getArray());
+        $this->assertEquals(['test1', 'test2'], $assertion->getArray());
         $this->assertEquals('test', $assertion->getName());
         $this->assertEquals('custom message', $assertion->getMessage());
 
         $this->setExpectedException('InvalidArgumentException');
 
-        new InArray('test', array());
+        new InArray('test', []);
     }
 }

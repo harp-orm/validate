@@ -13,11 +13,11 @@ class IsInstanceOfTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array(new SplObjectStorage(), 'SplObjectStorage', true),
-            array(new stdClass(), 'stdClass', true),
-            array(new SplObjectStorage(), 'stdClass', 'test is invalid'),
-        );
+        return [
+            [new SplObjectStorage(), 'SplObjectStorage', true],
+            [new stdClass(), 'stdClass', true],
+            [new SplObjectStorage(), 'stdClass', 'test is invalid'],
+        ];
     }
 
     /**

@@ -13,14 +13,14 @@ class LengthGreaterThanTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        return array(
-            array('something', 4, true),
-            array('something', 10, 'test should be more than 10 letters'),
-            array('something', 9, 'test should be more than 9 letters'),
-            array('тест', 3, true),
-            array('тест', 10, 'test should be more than 10 letters'),
-            array('тест', 4, 'test should be more than 4 letters'),
-        );
+        return [
+            ['something', 4, true],
+            ['something', 10, 'test should be more than 10 letters'],
+            ['something', 9, 'test should be more than 9 letters'],
+            ['тест', 3, true],
+            ['тест', 10, 'test should be more than 10 letters'],
+            ['тест', 4, 'test should be more than 4 letters'],
+        ];
     }
 
     /**
