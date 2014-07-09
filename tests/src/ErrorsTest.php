@@ -26,6 +26,8 @@ class ErrorsTest extends AbstractTestCase
      * @covers ::contains
      * @covers ::isEmpty
      * @covers ::getSubject
+     * @covers ::getFirst
+     * @covers ::getNext
      */
     public function testConstruct()
     {
@@ -63,6 +65,10 @@ class ErrorsTest extends AbstractTestCase
             $this->assertContains($error, $errorObjects);
             $this->assertTrue($all->contains($error));
         }
+
+        $this->assertSame($errors->getFirst(), $errorObjects[0]);
+        $this->assertSame($errors->getNext(), $errorObjects[1]);
+        $this->assertNull($errors->getNext());
     }
 
     /**

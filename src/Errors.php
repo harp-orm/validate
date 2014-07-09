@@ -154,6 +154,26 @@ class Errors implements Iterator, Countable
         return implode(', ', $result);
     }
 
+    /**
+     * @return Error|null
+     */
+    public function getFirst()
+    {
+        $this->errors->rewind();
+
+        return $this->errors->current();
+    }
+
+    /**
+     * @return Error|null
+     */
+    public function getNext()
+    {
+        $this->errors->next();
+
+        return $this->errors->current();
+    }
+
     public function __toString()
     {
         return $this->humanize();
