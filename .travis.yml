@@ -10,6 +10,11 @@ matrix:
   allow_failures:
     - php: hhvm-nightly
 
+notifications:
+  email: false
+  slack:
+    secure: NJV1lO1t0TPbzMwjeIPO7Zjg7uyGsYiPuknM+R43SNgwjj1q3PMp9SnYwCpo/uR3IQOpG5KPv7yXNsq9CnMOXEIwmpBDW5i5oqy+rqwGX7PrU1nm4mh7lcZ0n0pyTRlyuRz+c3HpD08O0z4y7nWTz0JAmKhflpdYL8phqwgZ07o=
+
 before_install:
   - composer selfupdate
 
