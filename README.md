@@ -53,6 +53,50 @@ foreach($errors => $error) {
     echo $error->getFullMessage();
 }
 ```
+
+You can also traverse through the Errors object using ``getFirst`` and ``getNext`` methods.
+
+```php
+$errors = $asserts->validate($subject);
+
+echo $errors->getFirst();
+echo $errors->getNext();
+```
+
+ValidateTrait
+-------------
+
+You can also add a special trait to an object to make it "validatable".
+
+```php
+use Harp\Validate\ValidateTrait;
+use Harp\Validate\Asserts;
+use Harp\Validate\Assert\Present;
+
+class Model
+{
+    use ValidateTrait;
+
+    public $test;
+
+    public function getValidationAsserts()
+    {
+        return new Asserts(array(
+            new Present('test'),
+        ));
+    }
+}
+```
+
+It will addd these methods to your class:
+
+Method                                    | Description
+------------------------------------------|--------------------------------------------------
+__validate__()                            | Perform the assertions, specified in the getValidationAsserts(). Will return true or false, and will set the ``errors`` object
+__getErrors__()                           | Returns an ``Errors`` object. If validate has not been called yet, will return an empty ``Errors`` object
+__isEmptyErrors__()                       | Return true or false
+
+
 Available Asserts
 -----------------
 
