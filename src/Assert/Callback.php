@@ -3,7 +3,7 @@
 namespace Harp\Validate\Assert;
 
 use Harp\Validate\Error;
-use InvalidArgumentException;
+use Closure;
 
 /**
  * Assert that the result of a given callback is true. You can thus use php's native validation functions.
@@ -25,12 +25,8 @@ class Callback extends AbstractAssertion
      * @param mixed  $callback
      * @param string $message
      */
-    public function __construct($name, $callback, $message = ':name is invalid')
+    public function __construct($name, Closure $callback, $message = ':name is invalid')
     {
-        if (! is_callable($callback)) {
-            throw new InvalidArgumentException('Callback should be callable');
-        }
-
         $this->callback = $callback;
 
         parent::__construct($name, $message);
@@ -53,7 +49,9 @@ class Callback extends AbstractAssertion
         if ($this->issetProperty($subject, $this->getName())) {
             $value = $this->getProperty($subject, $this->getName());
 
-            if (! call_user_func($this->callback, $value)) {
+            $callback = $this->callback;
+
+            if (! $callback($subject, $value)) {
                 return new Error($this->getMessage(), $this->getName());
             }
         }

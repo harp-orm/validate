@@ -12,17 +12,11 @@ class CallbackTest extends AbstractTestCase
 {
     public function dataExecute()
     {
-        $closure = function($value) {
-            return $value === 'test12';
-        };
-
         return [
-            ['10', 'is_numeric', true],
-            ['black', 'is_numeric', 'test is invalid'],
-            [10, 'is_int', true],
-            ['black', 'is_int', 'test is invalid'],
-            ['test12', $closure, true],
-            ['test122', $closure, 'test is invalid'],
+            ['10', function ($subject) {return $subject->test === '10';}, true],
+            ['black', function ($subject, $value) {return $value === 'black';}, true],
+            ['black', function () {return true;}, true],
+            ['black', function () {return false;}, 'test is invalid'],
         ];
     }
 
@@ -43,14 +37,11 @@ class CallbackTest extends AbstractTestCase
      */
     public function testConstruct()
     {
-        $assertion = new Callback('test', 'is_numeric', 'custom message');
+        $closure = function ($subject) {return $subject['test'] === '10';};
+        $assertion = new Callback('test', $closure, 'custom message');
 
-        $this->assertEquals('is_numeric', $assertion->getCallback());
+        $this->assertEquals($closure, $assertion->getCallback());
         $this->assertEquals('test', $assertion->getName());
         $this->assertEquals('custom message', $assertion->getMessage());
-
-        $this->setExpectedException('InvalidArgumentException');
-
-        new Callback('test', 'invalid callback');
     }
 }
