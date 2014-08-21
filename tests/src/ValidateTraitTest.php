@@ -35,5 +35,27 @@ class ValidateTraitTest extends AbstractTestCase
         $this->assertFalse($model->isEmptyErrors());
 
         $this->assertEquals(new Error(':name must be present', 'test'), $errors->getFirst());
+
+        $this->setExpectedException('Harp\Validate\InvalidException', 'Has errors: test must be present');
+
+        $model->assertValid();
+    }
+
+    /**
+     * @covers ::assertValid
+     */
+    public function testAssertValid()
+    {
+        $model = new Model();
+
+        $model->test = '!!!!';
+
+        $model->assertValid();
+
+        $model->test = null;
+
+        $this->setExpectedException('Harp\Validate\InvalidException', 'Has errors: test must be present');
+
+        $model->assertValid();
     }
 }

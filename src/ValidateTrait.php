@@ -46,6 +46,21 @@ trait ValidateTrait
     }
 
     /**
+     * Throws an exception if invalid
+     *
+     * @return static
+     * @throws InvalidException If has errors
+     */
+    public function assertValid()
+    {
+        if (! $this->validate()) {
+            throw new InvalidException(sprintf('Has errors: %s', $this->getErrors()));
+        }
+
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
     public function isEmptyErrors()

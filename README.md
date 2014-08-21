@@ -95,6 +95,7 @@ Method                                    | Description
 __validate__()                            | Perform the assertions, specified in the getValidationAsserts(). Will return true or false, and will set the ``errors`` object
 __getErrors__()                           | Returns an ``Errors`` object. If validate has not been called yet, will return an empty ``Errors`` object
 __isEmptyErrors__()                       | Return true or false
+__assertValid__()                         | Throw Harp\Validate\InvalidException if there are any errors
 
 
 Available Asserts
