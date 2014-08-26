@@ -11,4 +11,26 @@ use LogicException;
  */
 class InvalidException extends LogicException
 {
+    /**
+     * @var array|object
+     */
+    private $subject;
+
+    /**
+     * @param array|object $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    /**
+     * @return array|object
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 }

@@ -54,7 +54,10 @@ trait ValidateTrait
     public function assertValid()
     {
         if (! $this->validate()) {
-            throw new InvalidException(sprintf('Has errors: %s', $this->getErrors()));
+            $exception = new InvalidException(sprintf('Has errors: %s', $this->getErrors()));
+            $exception->setSubject($this);
+
+            throw $exception;
         }
 
         return $this;

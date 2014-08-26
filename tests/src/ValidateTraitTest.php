@@ -3,9 +3,9 @@
 namespace Harp\Validate\Test;
 
 use Harp\Validate\Error;
+use Harp\Validate\InvalidException;
 
 /**
- * @group   asserts
  * @coversDefaultClass Harp\Validate\ValidateTrait
  */
 class ValidateTraitTest extends AbstractTestCase
@@ -54,8 +54,12 @@ class ValidateTraitTest extends AbstractTestCase
 
         $model->test = null;
 
-        $this->setExpectedException('Harp\Validate\InvalidException', 'Has errors: test must be present');
-
-        $model->assertValid();
+        try {
+            $model->assertValid();
+            $this->fail('Should Throw an exception');
+        } catch (InvalidException $exception) {
+            $this->assertEquals('Has errors: test must be present', $exception->getMessage());
+            $this->assertSame($model, $exception->getSubject());
+        }
     }
 }
