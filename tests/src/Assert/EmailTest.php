@@ -11,7 +11,7 @@ use stdClass;
  */
 class EmailTest extends AbstractTestCase
 {
-    public function dataIsValid()
+    public function dataIsValidStatic()
     {
         return [
             ['test@example.com', true],
@@ -26,12 +26,12 @@ class EmailTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataIsValid
-     * @covers ::isValid
+     * @dataProvider dataIsValidStatic
+     * @covers ::isValidNormal
      */
-    public function testIsValid($email, $expected)
+    public function testIsValidNormal($email, $expected)
     {
-        $this->assertSame($expected, Email::isValid($email));
+        $this->assertSame($expected, Email::isValidNormal($email));
     }
 
     public function dataIsValidStrict()
@@ -70,7 +70,7 @@ class EmailTest extends AbstractTestCase
 
     /**
      * @dataProvider dataExecute
-     * @covers ::execute
+     * @covers ::isValid
      */
     public function testExecute($value, $type, $expected)
     {

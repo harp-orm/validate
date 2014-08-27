@@ -10,7 +10,7 @@ use Harp\Validate\Assert\Callback;
  */
 class CallbackTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataGetError()
     {
         return [
             ['10', function ($subject) {return $subject->test === '10';}, true],
@@ -21,10 +21,10 @@ class CallbackTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataGetError
+     * @covers ::getError
      */
-    public function testExecute($value, $callback, $expected)
+    public function testGetError($value, $callback, $expected)
     {
         $assertion = new Callback('test', $callback);
 

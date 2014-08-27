@@ -2,6 +2,7 @@
 
 namespace Harp\Validate;
 
+use Harp\Validate\Assert\AbstractAssertion;
 use InvalidArgumentException;
 
 /**
@@ -11,48 +12,28 @@ use InvalidArgumentException;
  */
 class Error
 {
-    protected static $translator = 'strtr';
-
-    public static function getTranslator()
-    {
-        return self::$translator;
-    }
-
-    public static function setTranslator($translator)
-    {
-        if (! is_callable($translator)) {
-            throw new InvalidArgumentException('Translator must be callable function');
-        }
-
-        self::$translator = $translator;
-    }
-
     /**
-     * The name of the property this error was recorded for
+     * The assertion this is an error of
      *
-     * @var string
+     * @var AbstractAssertion
      */
-    protected $name;
-
-    /**
-     * @var array
-     */
-    protected $parameters;
-
-    /**
-     * @var string
-     */
-    protected $message;
+    private $assert;
 
     /**
      * @param string $message
      * @param string $name
      */
-    public function __construct($message, $name, array $parameters = array())
+    public function __construct(AbstractAssertion $assert)
     {
-        $this->name = $name;
-        $this->message = $message;
-        $this->parameters = $parameters;
+        $this->assert = $assert;
+    }
+
+    /**
+     * @return AbstractAssertion
+     */
+    public function getAssert()
+    {
+        return $this->assert;
     }
 
     /**
@@ -62,41 +43,7 @@ class Error
      */
     public function getName()
     {
-        return $this->name;
-    }
-
-    /**
-     * Change the name of the property for this error.
-     *
-     * @param  string $name
-     * @return Error  $this
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
-
-    /**
-     * All the parameters for the message (replacing %s)
-     *
-     * @return array
-     */
-    public function getMessageParameters()
-    {
-        return array_merge(
-            [':name' => $this->name],
-            $this->parameters
-        );
+        return $this->assert->getName();
     }
 
     /**
@@ -106,17 +53,7 @@ class Error
      */
     public function getMessage()
     {
-        return $this->message;
-    }
-
-    /**
-     * Get the error message, with all placeholders filled
-     *
-     * @return string
-     */
-    public function getFullMessage()
-    {
-        return call_user_func(self::$translator, $this->message, $this->getMessageParameters());
+        return strtr($this->assert->getMessage(), $this->assert->getMessageParameters());
     }
 
     /**
@@ -124,6 +61,6 @@ class Error
      */
     public function __toString()
     {
-        return $this->getFullMessage();
+        return $this->getMessage();
     }
 }

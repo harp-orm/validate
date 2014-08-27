@@ -2,8 +2,8 @@
 
 use Harp\Validate\Assert\AbstractAssertion;
 use Harp\Validate\Error;
-use PHPUnit_Framework_TestCase;
 use stdClass;
+use PHPUnit_Framework_TestCase;
 
 /**
  * @package Jam
@@ -11,16 +11,13 @@ use stdClass;
  */
 abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase {
 
-    public function assertAssertion($expected, AbstractAssertion $assertion, $value)
+    public function assertAssertion($expected, AbstractAssertion $assertion, $subject)
     {
-        if (is_array($value)) {
-            $object = $value;
-        } else {
-            $object = new stdClass();
-            $object->{$assertion->getName()} = $value;
+        if (! ($subject instanceof stdClass)) {
+            $subject = (object) [$assertion->getName() => $subject];
         }
 
-        $result = $assertion->execute($object);
+        $result = $assertion->getError($subject);
 
         if ($expected === true) {
             $message = sprintf('Assertion %s should pass', get_class($assertion));
@@ -28,7 +25,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase {
         } else {
             $message = sprintf('Assertion %s should fail', get_class($assertion));
             $this->assertTrue($result instanceof Error, $message);
-            $this->assertEquals($expected, $result->getFullMessage());
+            $this->assertEquals($expected, $result->getMessage());
         }
     }
 }

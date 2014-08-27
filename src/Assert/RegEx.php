@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert that the value matches a given regex. Passed directly to preg_match()
  *
@@ -11,9 +9,9 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class RegEx extends AbstractAssertion
+class RegEx extends AbstractValueAssertion
 {
-    protected $pattern;
+    private $pattern;
 
     /**
      * @param string $name
@@ -37,17 +35,11 @@ class RegEx extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if (! preg_match($this->pattern, $value)) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return preg_match($this->pattern, $value);
     }
 }

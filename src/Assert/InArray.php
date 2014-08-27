@@ -2,7 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
 use InvalidArgumentException;
 
 /**
@@ -13,12 +12,12 @@ use InvalidArgumentException;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class InArray extends AbstractAssertion
+class InArray extends AbstractValueAssertion
 {
     /**
      * @var array
      */
-    protected $array;
+    private $array;
 
     /**
      * @param string $name
@@ -45,17 +44,11 @@ class InArray extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if (! in_array($value, $this->array)) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return in_array($value, $this->array);
     }
 }

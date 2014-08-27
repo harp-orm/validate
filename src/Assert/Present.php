@@ -3,6 +3,7 @@
 namespace Harp\Validate\Assert;
 
 use Harp\Validate\Error;
+use Harp\Validate\Subject;
 
 /**
  * Will trigger an error if the value is empty
@@ -13,6 +14,11 @@ use Harp\Validate\Error;
  */
 class Present extends AbstractAssertion
 {
+    public static function isValue($value)
+    {
+        return ($value !== null and $value !== false and $value !== '');
+    }
+
     /**
      * @param string $name
      * @param string $message
@@ -22,20 +28,14 @@ class Present extends AbstractAssertion
         parent::__construct($name, $message);
     }
 
-    public static function isValid($value)
-    {
-        return ($value !== null and $value !== false and $value !== '');
-    }
-
     /**
-     * @param  object|array $subject
+     * @param  object $subject
      * @return Error|null
      */
-    public function execute($subject)
+    public function getError($subject)
     {
-        if (! $this->issetProperty($subject, $this->getName())
-            or ! self::isValid($this->getProperty($subject, $this->getName()))) {
-            return new Error($this->getMessage(), $this->getName());
+        if (! isset($subject->{$this->getName()}) or ! self::isValue($subject->{$this->getName()})) {
+            return new Error($this);
         }
     }
 }

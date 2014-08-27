@@ -14,7 +14,7 @@ use SplObjectStorage;
  */
 class Asserts implements Iterator, Countable
 {
-    protected $asserts;
+    private $asserts;
 
     public function __construct(array $asserts = array())
     {
@@ -132,15 +132,15 @@ class Asserts implements Iterator, Countable
     }
 
     /**
-     * @param  object|array $subject
-     * @return Errors       array of error objects
+     * @param  object $subject
+     * @return Errors array of error objects
      */
-    public function validate($subject)
+    public function getErrors($subject)
     {
-        $errors = new Errors($subject);
+        $errors = new Errors();
 
         foreach ($this->asserts as $assert) {
-            if (($error = $assert->execute($subject))) {
+            if (($error = $assert->getError($subject))) {
                 $errors->add($error);
             }
         }

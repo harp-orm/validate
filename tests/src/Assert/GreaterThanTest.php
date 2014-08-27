@@ -11,7 +11,7 @@ use stdClass;
  */
 class GreaterThanTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             [9, 4, true],
@@ -24,10 +24,10 @@ class GreaterThanTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $length, $expected)
+    public function testIsValid($value, $length, $expected)
     {
         $assertion = new GreaterThan('test', $length);
 
@@ -37,6 +37,7 @@ class GreaterThanTest extends AbstractTestCase
     /**
      * @covers ::__construct
      * @covers ::getValue
+     * @covers ::getMessageParameters
      */
     public function testConstruct()
     {
@@ -44,6 +45,7 @@ class GreaterThanTest extends AbstractTestCase
 
         $this->assertEquals(9, $assertion->getValue());
         $this->assertEquals('test', $assertion->getName());
+        $this->assertEquals([':name' => 'test', ':value' => 9], $assertion->getMessageParameters());
         $this->assertEquals('custom message', $assertion->getMessage());
     }
 }

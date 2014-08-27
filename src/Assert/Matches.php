@@ -16,7 +16,7 @@ class Matches extends AbstractAssertion
     /**
      * @var string
      */
-    protected $matches;
+    private $matches;
 
     /**
      * @param string $name
@@ -36,18 +36,27 @@ class Matches extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
+     * @return array
+     */
+    public function getMessageParameters()
+    {
+        return parent::getMessageParameters() + [
+            ':matches' => $this->matches,
+        ];
+    }
+
+    /**
+     * @param  object $subject
      * @return Error|null
      */
-    public function execute($subject)
+    public function getError($subject)
     {
-        if ($this->issetProperty($subject, $this->getName()) and $this->issetProperty($subject, $this->matches)) {
-
-            $value = $this->getProperty($subject, $this->getName());
-            $matchValue = $this->getProperty($subject, $this->matches);
+        if (isset($subject->{$this->getName()}) and isset($subject->{$this->matches})) {
+            $value = $subject->{$this->getName()};
+            $matchValue = $subject->{$this->matches};
 
             if ($value != $matchValue) {
-                return new Error($this->getMessage(), $this->getName(), array(':matches' => $this->matches));
+                return new Error($this);
             }
         }
     }

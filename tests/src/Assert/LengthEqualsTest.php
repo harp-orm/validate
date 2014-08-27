@@ -11,7 +11,7 @@ use stdClass;
  */
 class LengthEqualsTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['something', 2, 'test should be 2 letters'],
@@ -22,10 +22,10 @@ class LengthEqualsTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $length, $expected)
+    public function testIsValid($value, $length, $expected)
     {
         $assertion = new LengthEquals('test', $length);
 
@@ -34,7 +34,6 @@ class LengthEqualsTest extends AbstractTestCase
 
     /**
      * @covers ::__construct
-     * @covers ::getLength
      */
     public function testConstruct()
     {

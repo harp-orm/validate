@@ -3,6 +3,7 @@
 namespace Harp\Validate;
 
 use LogicException;
+use Exception;
 
 /**
  * @author     Ivan Kerin <ikerin@gmail.com>
@@ -11,26 +12,28 @@ use LogicException;
  */
 class InvalidException extends LogicException
 {
+    public function __construct($subject, $code = 0, Exception $previous = null)
+    {
+        $this->subject = $subject;
+
+        parent::__construct("Has errors: {$subject->getErrors()->humanize()}", $code, $previous);
+    }
+
     /**
-     * @var array|object
+     * @var ValidateTrait
      */
     private $subject;
 
     /**
-     * @param array|object $subject
-     */
-    public function setSubject($subject)
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    /**
-     * @return array|object
+     * @return ValidateTrait
      */
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    public function getErrors()
+    {
+        return $this->subject->getErrors();
     }
 }

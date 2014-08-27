@@ -16,14 +16,14 @@ use Closure;
 class Callback extends AbstractAssertion
 {
     /**
-     * @var mixed
+     * @var Closure
      */
-    protected $callback;
+    private $callback;
 
     /**
-     * @param string $name
-     * @param mixed  $callback
-     * @param string $message
+     * @param string  $name
+     * @param Closure $callback
+     * @param string  $message
      */
     public function __construct($name, Closure $callback, $message = ':name is invalid')
     {
@@ -33,7 +33,7 @@ class Callback extends AbstractAssertion
     }
 
     /**
-     * @return mixed
+     * @return Closure
      */
     public function getCallback()
     {
@@ -41,18 +41,17 @@ class Callback extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
+     * @param  object $subject
      * @return Error|null
      */
-    public function execute($subject)
+    public function getError($subject)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
+        if (isset($subject->{$this->getName()})) {
+            $value = $subject->{$this->getName()};
             $callback = $this->callback;
 
             if (! $callback($subject, $value)) {
-                return new Error($this->getMessage(), $this->getName());
+                return new Error($this);
             }
         }
     }

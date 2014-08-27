@@ -11,7 +11,7 @@ use stdClass;
  */
 class RegExTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['something', '/\w/', true],
@@ -20,10 +20,10 @@ class RegExTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $pattern, $expected)
+    public function testIsValid($value, $pattern, $expected)
     {
         $assertion = new RegEx('test', $pattern);
 

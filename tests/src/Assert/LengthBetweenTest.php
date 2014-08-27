@@ -11,7 +11,7 @@ use stdClass;
  */
 class LengthBetweenTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['something', 4,  20, true],
@@ -28,10 +28,10 @@ class LengthBetweenTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $min, $max, $expected)
+    public function testIsValid($value, $min, $max, $expected)
     {
         $assertion = new LengthBetween('test', $min, $max);
 
@@ -40,16 +40,17 @@ class LengthBetweenTest extends AbstractTestCase
 
     /**
      * @covers ::__construct
-     * @covers ::getMin
-     * @covers ::getMax
+     * @covers ::getMaxLength
+     * @covers ::getMessageParameters
      */
     public function testConstruct()
     {
         $assertion = new LengthBetween('test', 4, 5, 'custom message');
 
-        $this->assertEquals(4, $assertion->getMin());
-        $this->assertEquals(5, $assertion->getMax());
+        $this->assertEquals(4, $assertion->getLength());
+        $this->assertEquals(5, $assertion->getMaxLength());
         $this->assertEquals('test', $assertion->getName());
+        $this->assertEquals([':name' => 'test', ':length' => 4, ':maxLength' => 5], $assertion->getMessageParameters());
         $this->assertEquals('custom message', $assertion->getMessage());
 
         $this->setExpectedException('InvalidArgumentException');

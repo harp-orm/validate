@@ -3,6 +3,7 @@
 namespace Harp\Validate\Test;
 
 use Harp\Validate\Assert\Matches;
+use Harp\Validate\Subject;
 use stdClass;
 
 /**
@@ -11,21 +12,21 @@ use stdClass;
  */
 class MatchesTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataGetError()
     {
         return [
-            [['temp' => 'test', 'temp2' => 'test'], 'temp', 'temp2', true],
-            [['temp' => 'test', 'temp2' => 's'], 'temp', 'temp2', 'temp must match temp2'],
-            [['temp' => 'test', 'temp2' => ''], 'temp', 'temp2', 'temp must match temp2'],
-            [[], 'temp', 'temp2', true],
+            [(object) ['temp' => 'test', 'temp2' => 'test'], 'temp', 'temp2', true],
+            [(object) ['temp' => 'test', 'temp2' => 's'], 'temp', 'temp2', 'temp must match temp2'],
+            [(object) ['temp' => 'test', 'temp2' => ''], 'temp', 'temp2', 'temp must match temp2'],
+            [(object) [], 'temp', 'temp2', true],
         ];
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider datagetError
+     * @covers ::getError
      */
-    public function testExecute($subject, $name, $matches, $expected)
+    public function testgetError($subject, $name, $matches, $expected)
     {
         $assertion = new Matches($name, $matches);
 
@@ -35,6 +36,7 @@ class MatchesTest extends AbstractTestCase
     /**
      * @covers ::__construct
      * @covers ::getMatches
+     * @covers ::getMessageParameters
      */
     public function testConstruct()
     {
@@ -42,6 +44,7 @@ class MatchesTest extends AbstractTestCase
 
         $this->assertEquals('test', $assertion->getName());
         $this->assertEquals('test2', $assertion->getMatches());
+        $this->assertEquals([':name' => 'test', ':matches' => 'test2'], $assertion->getMessageParameters());
         $this->assertEquals('custom message', $assertion->getMessage());
     }
 }

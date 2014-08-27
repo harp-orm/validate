@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert that a numeric value is bigger than a set value.
  *
@@ -11,12 +9,12 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class GreaterThan extends AbstractAssertion
+class GreaterThan extends AbstractValueAssertion
 {
     /**
      * @var integer|float
      */
-    protected $value;
+    private $value;
 
     /**
      * @param string        $name
@@ -31,6 +29,16 @@ class GreaterThan extends AbstractAssertion
     }
 
     /**
+     * @return array
+     */
+    public function getMessageParameters()
+    {
+        return parent::getMessageParameters() + [
+            ':value' => $this->value,
+        ];
+    }
+
+    /**
      * @return integer|float
      */
     public function getValue()
@@ -39,19 +47,11 @@ class GreaterThan extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if ($value <= $this->value) {
-                $parameters = array(':value' => $this->value);
-
-                return new Error($this->getMessage(), $this->getName(), $parameters);
-            }
-        }
+        return $value > $this->value;
     }
 }

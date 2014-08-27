@@ -25,32 +25,21 @@ $subject->title = 'small title';
 $subject->newsletter_email = 'invalid email';
 
 // title should be between 10 and 20 letters, newsletter_email should be a valid email
-echo $asserts->validate($subject);
-```
-
-You can use both arrays and objects for subjects.
-
-```php
-$subject = array(
-    'title' => 'small title',
-    'newsletter_email' => 'invalid email',
-);
-
-echo $asserts->validate($subject);
+echo $asserts->getErrors($subject);
 ```
 
 Errors
 ------
 
-The result of ``$asserts->validate($subject)`` is actually an ``Errors`` object. It's an Iterator that holds all the erorrs and has ``->humanize()`` mehtod to display all the errors.
+The result of ``$asserts->getErrors($subject)`` is actually an ``Errors`` object. It's an Iterator that holds all the erorrs and has ``->humanize()`` mehtod to display all the errors.
 You can also foreach it and get all the errors separately. Casting it to string calls ``->humanize()`` automatically.
 
 ```php
-$errors = $asserts->validate($subject);
+$errors = $asserts->getErrors($subject);
 
 foreach($errors => $error) {
     echo $error->getName();
-    echo $error->getFullMessage();
+    echo $error->getMessage();
 }
 ```
 
@@ -103,12 +92,10 @@ Available Asserts
 
 __Callback__
 
-Assert that the result of a given callback is true. You can thus use php's native validation functions. It only passes the value to the method.
+Assert that the result of a given callback is true. You must use a closure object, and will recieve the subject and the value as arguments.
 
 ```php
-new Callback('names', 'is_array')
-new Callback('names', array('MyClass', 'validation_method'))
-new Callback('state', function ($value) {
+new Callback('state', function ($subject, $value) {
     return $value !== 'test';
 })
 ```

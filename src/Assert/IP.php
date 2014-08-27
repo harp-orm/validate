@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert that the value's is a valid IP address uses filter_var() internally
  *
@@ -11,20 +9,14 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class IP extends AbstractAssertion
+class IP extends AbstractValueAssertion
 {
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $flags = FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE;
-
-            if (! filter_var($this->getProperty($subject, $this->getName()), FILTER_VALIDATE_IP, $flags)) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE);
     }
 }

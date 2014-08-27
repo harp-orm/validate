@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
  * @copyright (c) 2014 Clippings Ltd.
@@ -14,12 +12,12 @@ abstract class AbstractAssertion
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      */
-    protected $message;
+    private $message;
 
     /**
      * @param string $name
@@ -47,29 +45,16 @@ abstract class AbstractAssertion
         return $this->message;
     }
 
-    /**
-     * @param  object|array $subject
-     * @param  string       $name
-     * @return boolean
-     */
-    public function issetProperty($subject, $name)
+    public function getMessageParameters()
     {
-        return is_array($subject) ? isset($subject[$name]) : isset($subject->{$name});
+        return [
+            ':name' => $this->getName(),
+        ];
     }
 
     /**
-     * @param  object|array $subject
-     * @param  string       $name
-     * @return mixed
+     * @param  object $subject
+     * @return \Harp\Validate\Error|null
      */
-    public function getProperty($subject, $name)
-    {
-        return is_array($subject) ? $subject[$name] : $subject->{$name};
-    }
-
-    /**
-     * @param  object|array $subject
-     * @return Error|null
-     */
-    abstract public function execute($subject);
+    abstract public function getError($subject);
 }

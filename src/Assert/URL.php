@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert if the value is a valid url.
  * By default it uses URL::NORMAL which converts all UTF related charecters in the url to their proper encoding.
@@ -16,7 +14,7 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class URL extends AbstractAssertion
+class URL extends AbstractValueAssertion
 {
     /**
      * Build url from parts, opposite of parse_url
@@ -98,7 +96,7 @@ class URL extends AbstractAssertion
     /**
      * @var integer
      */
-    protected $type;
+    private $type;
 
     public function __construct($name, $type = URL::NORMAL, $message = ':name should be a valid URL address')
     {
@@ -121,7 +119,7 @@ class URL extends AbstractAssertion
      * @param  string  $url
      * @return boolean
      */
-    public static function isValid($url)
+    public static function isValidNormal($url)
     {
         $url = self::convertUtfUrl($url);
 
@@ -140,17 +138,11 @@ class URL extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return $this->isStrict() ? self::isValidStrict($value) : self::isValidNormal($value);
     }
 }

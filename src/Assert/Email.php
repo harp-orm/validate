@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert if the value is not a proper email address.
  * By default it uses Email::NORMAL - a small and fast regex which should handle most cases.
@@ -14,7 +12,7 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class Email extends AbstractAssertion
+class Email extends AbstractValueAssertion
 {
     const NORMAL = 1;
     const STRICT = 2;
@@ -50,7 +48,7 @@ class Email extends AbstractAssertion
      * @param  string  $email
      * @return boolean
      */
-    public static function isValid($email)
+    public static function isValidNormal($email)
     {
         $expression =
             '/^
@@ -81,12 +79,12 @@ class Email extends AbstractAssertion
     /**
      * @var string
      */
-    protected $message;
+    private $message;
 
     /**
      * @var integer
      */
-    protected $type;
+    private $type;
 
     public function __construct($name, $type = Email::NORMAL, $message = ':name should be a valid email')
     {
@@ -104,17 +102,11 @@ class Email extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if (! ($this->isStrict() ? self::isValidStrict($value) : self::isValid($value))) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return $this->isStrict() ? self::isValidStrict($value) : self::isValidNormal($value);
     }
 }

@@ -11,7 +11,7 @@ use stdClass;
  */
 class LengthGreaterThanTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['something', 4, true],
@@ -24,10 +24,10 @@ class LengthGreaterThanTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $length, $expected)
+    public function testIsValid($value, $length, $expected)
     {
         $assertion = new LengthGreaterThan('test', $length);
 
@@ -36,7 +36,6 @@ class LengthGreaterThanTest extends AbstractTestCase
 
     /**
      * @covers ::__construct
-     * @covers ::getLength
      */
     public function testConstruct()
     {

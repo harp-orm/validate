@@ -11,7 +11,7 @@ use stdClass;
  */
 class LengthLessTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['something', 20, true],
@@ -26,10 +26,10 @@ class LengthLessTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $length, $expected)
+    public function testIsValid($value, $length, $expected)
     {
         $assertion = new LengthLessThan('test', $length);
 
@@ -38,7 +38,6 @@ class LengthLessTest extends AbstractTestCase
 
     /**
      * @covers ::__construct
-     * @covers ::getLength
      */
     public function testConstruct()
     {

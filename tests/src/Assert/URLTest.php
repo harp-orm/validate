@@ -104,7 +104,7 @@ class URLTest extends AbstractTestCase
         $this->assertSame($expected, URL::convertUtfUrl($url));
     }
 
-    public function dataIsValid()
+    public function dataIsValidNormal()
     {
         return [
             ['http://example.com', true],
@@ -141,12 +141,12 @@ class URLTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataIsValid
-     * @covers ::isValid
+     * @dataProvider dataIsValidNormal
+     * @covers ::isValidNormal
      */
-    public function testIsValid($url, $expected)
+    public function testIsValidNormal($url, $expected)
     {
-        $this->assertSame($expected, URL::isValid($url));
+        $this->assertSame($expected, URL::isValidNormal($url));
     }
 
     public function dataIsValidStrict()
@@ -196,7 +196,7 @@ class URLTest extends AbstractTestCase
         $this->assertSame($expected, URL::isValidStrict($url));
     }
 
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['http://example.com', URL::NORMAL, true],
@@ -210,10 +210,10 @@ class URLTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $type, $expected)
+    public function testIsValid($value, $type, $expected)
     {
         $assertion = new URL('test', $type);
 
@@ -221,7 +221,6 @@ class URLTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
      * @covers ::__construct
      * @covers ::isStrict
      */

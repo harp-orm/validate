@@ -11,7 +11,7 @@ use stdClass;
  */
 class IPTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['210.132.31.43', true],
@@ -22,10 +22,10 @@ class IPTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $expected)
+    public function testIsValid($value, $expected)
     {
         $assertion = new IP('test');
 

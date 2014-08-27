@@ -11,7 +11,7 @@ use stdClass;
  */
 class PresentTest extends AbstractTestCase
 {
-    public function dataIsValid()
+    public function dataIsValue()
     {
         return [
             ['10', true],
@@ -27,32 +27,31 @@ class PresentTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataIsValid
-     * @covers ::isValid
+     * @dataProvider dataIsValue
+     * @covers ::isValue
      */
-    public function testIsValid($value, $expected)
+    public function testIsValue($value, $expected)
     {
-        $this->assertSame($expected, Present::isValid($value));
+        $this->assertSame($expected, Present::isValue($value));
     }
 
-    public function dataExecute()
+    public function dataGetError()
     {
         return [
-            ['something', true],
-            [null, 'test must be present'],
-            ['', 'test must be present'],
-            [false, 'test must be present'],
+            ['10', true],
             [0, true],
             ['0', true],
-            [new stdClass(), true],
+            [false, 'test must be present'],
+            [null, 'test must be present'],
+            ['', 'test must be present'],
         ];
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataGetError
+     * @covers ::getError
      */
-    public function testExecute($value, $expected)
+    public function testGetError($value, $expected)
     {
         $assertion = new Present('test');
 

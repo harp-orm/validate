@@ -11,7 +11,7 @@ use SplObjectStorage;
  */
 class IsInstanceOfTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             [new SplObjectStorage(), 'SplObjectStorage', true],
@@ -21,10 +21,10 @@ class IsInstanceOfTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $class, $expected)
+    public function testIsValid($value, $class, $expected)
     {
         $assertion = new IsInstanceOf('test', $class);
 

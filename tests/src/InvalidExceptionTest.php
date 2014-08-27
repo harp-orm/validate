@@ -11,19 +11,23 @@ use Exception;
 class InvalidExceptionTest extends AbstractTestCase
 {
     /**
-     * @covers ::setSubject
+     * @covers ::__construct
      * @covers ::getSubject
+     * @covers ::getErrors
      */
     public function testSubject()
     {
         $previous = new Exception();
         $model = new Model();
 
-        $exception = new InvalidException('message', 123, $previous);
-        $exception->setSubject($model);
+        $this->assertFalse($model->validate());
+
+        $exception = new InvalidException($model, 123, $previous);
 
         $this->assertSame($previous, $exception->getPrevious());
         $this->assertSame(123, $exception->getCode());
         $this->assertSame($model, $exception->getSubject());
+
+        $this->assertSame($model->getErrors(), $exception->getErrors());
     }
 }

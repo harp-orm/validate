@@ -4,6 +4,7 @@ namespace Harp\Validate\Test;
 
 use Harp\Validate\Error;
 use Harp\Validate\InvalidException;
+use Harp\Validate\Assert\Present;
 
 /**
  * @coversDefaultClass Harp\Validate\ValidateTrait
@@ -34,7 +35,7 @@ class ValidateTraitTest extends AbstractTestCase
         $this->assertCount(1, $errors);
         $this->assertFalse($model->isEmptyErrors());
 
-        $this->assertEquals(new Error(':name must be present', 'test'), $errors->getFirst());
+        $this->assertEquals(new Error(new Present('test')), $errors->getFirst());
 
         $this->setExpectedException('Harp\Validate\InvalidException', 'Has errors: test must be present');
 

@@ -2,6 +2,8 @@
 
 namespace Harp\Validate;
 
+use Harp\Validate\Subject;
+
 /**
  * Add this trait to your object to make them "validateable"
  *
@@ -29,7 +31,7 @@ trait ValidateTrait
     public function getErrors()
     {
         if (! $this->errors) {
-            $this->errors = new Errors($this);
+            $this->errors = new Errors();
         }
 
         return $this->errors;
@@ -40,7 +42,9 @@ trait ValidateTrait
      */
     public function validate()
     {
-        $this->errors = $this->getValidationAsserts()->validate($this);
+        $errors = $this->getValidationAsserts()->getErrors($this);
+
+        $this->getErrors()->set($errors);
 
         return $this->isEmptyErrors();
     }
@@ -54,10 +58,7 @@ trait ValidateTrait
     public function assertValid()
     {
         if (! $this->validate()) {
-            $exception = new InvalidException(sprintf('Has errors: %s', $this->getErrors()));
-            $exception->setSubject($this);
-
-            throw $exception;
+            throw new InvalidException($this);
         }
 
         return $this;
@@ -68,6 +69,6 @@ trait ValidateTrait
      */
     public function isEmptyErrors()
     {
-        return $this->errors ? $this->errors->isEmpty() : true;
+        return $this->getErrors()->isEmpty();
     }
 }

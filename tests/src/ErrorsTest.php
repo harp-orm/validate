@@ -4,6 +4,7 @@ namespace Harp\Validate\Test;
 
 use Harp\Validate\Errors;
 use Harp\Validate\Error;
+use Harp\Validate\Assert\Present;
 use stdClass;
 
 /**
@@ -16,7 +17,6 @@ class ErrorsTest extends AbstractTestCase
      * @covers ::__construct
      * @covers ::all
      * @covers ::add
-     * @covers ::set
      * @covers ::next
      * @covers ::current
      * @covers ::valid
@@ -25,22 +25,18 @@ class ErrorsTest extends AbstractTestCase
      * @covers ::rewind
      * @covers ::contains
      * @covers ::isEmpty
-     * @covers ::getSubject
      * @covers ::getFirst
      * @covers ::getNext
      */
     public function testConstruct()
     {
-        $subject = new stdClass();
-
         $errorObjects = array(
-            new Error('test', 'test'),
-            new Error('test', 'test'),
+            new Error(new Present('test')),
+            new Error(new Present('test')),
         );
 
-        $errors = new Errors($subject, $errorObjects);
+        $errors = new Errors($errorObjects);
 
-        $this->assertSame($subject, $errors->getSubject());
         $this->assertCount(2, $errors);
 
         $this->assertEquals($errors->key(), $errors->all()->key());
@@ -54,7 +50,6 @@ class ErrorsTest extends AbstractTestCase
         $errors->rewind();
 
         $this->assertFalse($errors->isEmpty());
-        $this->assertSame($subject, $errors->getSubject());
 
         $all = $errors->all();
 
@@ -72,18 +67,40 @@ class ErrorsTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::set
+     */
+    public function testSet()
+    {
+        $errorObjects = array(
+            new Error(new Present('test')),
+            new Error(new Present('test')),
+        );
+
+        $newObjects = array(
+            new Error(new Present('test2')),
+            new Error(new Present('test2')),
+        );
+
+        $errors = new Errors($errorObjects);
+
+        $errors->set(new Errors($newObjects));
+
+        $this->assertSame($errors->getFirst(), $newObjects[0]);
+        $this->assertSame($errors->getNext(), $newObjects[1]);
+        $this->assertNull($errors->getNext());
+    }
+
+    /**
      * @covers ::humanize
      */
     public function testHumanize()
     {
-        $subject = new stdClass();
+        $errorObjects = [
+            new Error(new Present('name 1', 'test 1 :name')),
+            new Error(new Present('name 2', 'test 2 :name')),
+        ];
 
-        $errorObjects = array(
-            new Error('test 1 :name', 'name 1'),
-            new Error('test 2 :name', 'name 2'),
-        );
-
-        $errors = new Errors($subject, $errorObjects);
+        $errors = new Errors($errorObjects);
 
         $this->assertEquals('test 1 name 1, test 2 name 2', $errors->humanize());
     }
@@ -93,20 +110,17 @@ class ErrorsTest extends AbstractTestCase
      */
     public function testOnlyFor()
     {
-        $subject = new stdClass();
+        $errorObjects = [
+            new Error(new Present('name1', 'test 1 :name')),
+            new Error(new Present('name1', 'test 2 :name')),
+            new Error(new Present('name2', 'test 3 :name')),
+        ];
 
-        $errorObjects = array(
-            new Error('test 1 :name', 'name1'),
-            new Error('test 2 :name', 'name1'),
-            new Error('test 3 :name', 'name2'),
-        );
-
-        $errors = new Errors($subject, $errorObjects);
+        $errors = new Errors($errorObjects);
 
         $filtered = $errors->onlyFor('name1');
 
         $this->assertEquals('test 1 name1, test 2 name1', $filtered->humanize());
-        $this->assertSame($subject, $filtered->getSubject());
     }
 
     /**
@@ -114,9 +128,7 @@ class ErrorsTest extends AbstractTestCase
      */
     public function testToString()
     {
-        $subject = new stdClass();
-
-        $errors = $this->getMock('Harp\Validate\Errors', array('humanize'), array($subject));
+        $errors = $this->getMock('Harp\Validate\Errors', ['humanize']);
 
         $errors
             ->expects($this->once())

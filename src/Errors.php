@@ -13,15 +13,16 @@ use SplObjectStorage;
  */
 class Errors implements Iterator, Countable
 {
-    protected $errors;
-    protected $subject;
+    /**
+     * @var SplObjectStorage
+     */
+    private $errors;
 
-    public function __construct($subject, array $errors = array())
+    public function __construct(array $errors = array())
     {
-        $this->subject = $subject;
         $this->errors = new SplObjectStorage();
 
-        $this->set($errors);
+        array_walk($errors, [$this, 'add']);
     }
 
     /**
@@ -30,7 +31,7 @@ class Errors implements Iterator, Countable
      */
     public function onlyFor($name)
     {
-        $errors = new Errors($this->subject);
+        $errors = new Errors();
 
         foreach ($this->errors as $error) {
             if ($error->getName() === $name) {
@@ -39,14 +40,6 @@ class Errors implements Iterator, Countable
         }
 
         return $errors;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSubject()
-    {
-        return $this->subject;
     }
 
     /**
@@ -108,9 +101,9 @@ class Errors implements Iterator, Countable
     /**
      * @param array $errors
      */
-    public function set(array $errors)
+    public function set(Errors $errors)
     {
-        array_walk($errors, [$this, 'add']);
+        $this->errors = clone $errors->errors;
 
         return $this;
     }
@@ -148,7 +141,7 @@ class Errors implements Iterator, Countable
         $result = array();
 
         foreach ($this->errors as $error) {
-            $result []= $error->getFullMessage();
+            $result []= $error->getMessage();
         }
 
         return implode(', ', $result);

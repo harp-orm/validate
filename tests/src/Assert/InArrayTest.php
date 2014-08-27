@@ -10,7 +10,7 @@ use Harp\Validate\Assert\InArray;
  */
 class InArrayTest extends AbstractTestCase
 {
-    public function dataExecute()
+    public function dataIsValid()
     {
         return [
             ['10', ['10', '20'], true],
@@ -20,10 +20,10 @@ class InArrayTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider dataExecute
-     * @covers ::execute
+     * @dataProvider dataIsValid
+     * @covers ::isValid
      */
-    public function testExecute($value, $array, $expected)
+    public function testIsValid($value, $array, $expected)
     {
         $assertion = new InArray('test', $array);
 

@@ -2,8 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
-
 /**
  * Assert that the value's string length is shorter than a set length. Uses mb_strlen() internally.
  *
@@ -11,13 +9,8 @@ use Harp\Validate\Error;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class LengthLessThan extends AbstractAssertion
+class LengthLessThan extends AbstractLengthAssertion
 {
-    /**
-     * @var integer
-     */
-    protected $length;
-
     /**
      * @param string  $name
      * @param integer $length
@@ -25,34 +18,15 @@ class LengthLessThan extends AbstractAssertion
      */
     public function __construct($name, $length, $message = ':name should be less than :length letters')
     {
-        $this->length = (int) $length;
-
-        parent::__construct($name, $message);
+        parent::__construct($name, $length, $message);
     }
 
     /**
-     * @return integer
+     * @param  mixed $value
+     * @return boolean
      */
-    public function getLength()
+    public function isValid($value)
     {
-        return $this->length;
-    }
-
-    /**
-     * @param  object|array $subject
-     * @return Error|null
-     */
-    public function execute($subject)
-    {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-            $length = mb_strlen($value, mb_detect_encoding($value));
-
-            if ($length >= $this->length) {
-                $parameters = [':length' => $this->length];
-
-                return new Error($this->getMessage(), $this->getName(), $parameters);
-            }
-        }
+        return self::getValueLength($value) < $this->getLength();
     }
 }

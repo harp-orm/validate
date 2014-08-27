@@ -2,7 +2,6 @@
 
 namespace Harp\Validate\Assert;
 
-use Harp\Validate\Error;
 use InvalidArgumentException;
 
 /**
@@ -13,12 +12,12 @@ use InvalidArgumentException;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class IsInstanceOf extends AbstractAssertion
+class IsInstanceOf extends AbstractValueAssertion
 {
     /**
      * @var string
      */
-    protected $class;
+    private $class;
 
     /**
      * @param string $name
@@ -47,17 +46,11 @@ class IsInstanceOf extends AbstractAssertion
     }
 
     /**
-     * @param  object|array $subject
-     * @return Error|null
+     * @param  mixed $value
+     * @return boolean
      */
-    public function execute($subject)
+    public function isValid($value)
     {
-        if ($this->issetProperty($subject, $this->getName())) {
-            $value = $this->getProperty($subject, $this->getName());
-
-            if (! is_a($value, $this->class)) {
-                return new Error($this->getMessage(), $this->getName());
-            }
-        }
+        return is_a($value, $this->class);
     }
 }
