@@ -2,6 +2,8 @@
 
 namespace Harp\Validate;
 
+use Harp\Harp\Repo\Event;
+
 /**
  * Add this trait to your object to make them "validateable"
  *
@@ -40,7 +42,9 @@ trait ValidateTrait
      */
     public function validate()
     {
+        self::getRepo()->dispatchBeforeEvent($this, Event::VALIDATE);
         $this->errors = $this->getValidationAsserts()->validate($this);
+        self::getRepo()->dispatchAfterEvent($this, Event::VALIDATE);
 
         return $this->isEmptyErrors();
     }
