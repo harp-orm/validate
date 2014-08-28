@@ -16,7 +16,7 @@ class Number extends AbstractValueAssertion
     const FLOAT = 2;
 
     /**
-     * @param  mixed  $value
+     * @param  mixed   $value
      * @return boolean
      */
     public static function isValidInteger($value)
@@ -25,7 +25,7 @@ class Number extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed  $value
+     * @param  mixed   $value
      * @return boolean
      */
     public static function isValidFloat($value)
@@ -40,7 +40,7 @@ class Number extends AbstractValueAssertion
 
     /**
      * @param string  $name
-     * @param integer $type
+     * @param integer $type Number::INTEGER or Number::FLOAT
      * @param string  $message
      */
     public function __construct($name, $type = Number::INTEGER, $message = ':name is an invalid number')

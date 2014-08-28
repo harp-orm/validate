@@ -3,7 +3,6 @@
 namespace Harp\Validate\Assert;
 
 use Harp\Validate\Error;
-use Harp\Validate\Subject;
 
 /**
  * Will trigger an error if the value is empty

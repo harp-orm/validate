@@ -50,7 +50,6 @@ trait ValidateTrait
     /**
      * Throws an exception if invalid
      *
-     * @return static
      * @throws InvalidException If has errors
      */
     public function assertValid()

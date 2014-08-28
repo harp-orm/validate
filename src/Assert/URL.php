@@ -98,6 +98,11 @@ class URL extends AbstractValueAssertion
      */
     private $type;
 
+    /**
+     * @param strubg  $name
+     * @param integer $type URL::NORMAL or URL::STRICT
+     * @param string  $message
+     */
     public function __construct($name, $type = URL::NORMAL, $message = ':name should be a valid URL address')
     {
         $this->type = $type;
