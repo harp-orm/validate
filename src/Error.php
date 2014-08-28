@@ -3,7 +3,6 @@
 namespace Harp\Validate;
 
 use Harp\Validate\Assert\AbstractAssertion;
-use InvalidArgumentException;
 
 /**
  * @author    Ivan Kerin <ikerin@gmail.com>
@@ -20,8 +19,7 @@ class Error
     private $assert;
 
     /**
-     * @param string $message
-     * @param string $name
+     * @param AbstractAssertion $assert
      */
     public function __construct(AbstractAssertion $assert)
     {

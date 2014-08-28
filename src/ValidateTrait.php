@@ -2,8 +2,6 @@
 
 namespace Harp\Validate;
 
-use Harp\Validate\Subject;
-
 /**
  * Add this trait to your object to make them "validateable"
  *
@@ -58,7 +56,7 @@ trait ValidateTrait
     public function assertValid()
     {
         if (! $this->validate()) {
-            throw new InvalidException($this);
+            throw new InvalidException($this, $this->getErrors());
         }
 
         return $this;

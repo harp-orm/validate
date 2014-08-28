@@ -22,7 +22,7 @@ class LengthGreaterThan extends AbstractLengthAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)

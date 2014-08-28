@@ -53,7 +53,7 @@ abstract class AbstractAssertion
     }
 
     /**
-     * @param  object $subject
+     * @param  object                    $subject
      * @return \Harp\Validate\Error|null
      */
     abstract public function getError($subject);

@@ -22,7 +22,7 @@ class InvalidExceptionTest extends AbstractTestCase
 
         $this->assertFalse($model->validate());
 
-        $exception = new InvalidException($model, 123, $previous);
+        $exception = new InvalidException($model, $model->getErrors(), 123, $previous);
 
         $this->assertSame($previous, $exception->getPrevious());
         $this->assertSame(123, $exception->getCode());

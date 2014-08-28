@@ -41,7 +41,7 @@ class Callback extends AbstractAssertion
     }
 
     /**
-     * @param  object $subject
+     * @param  object     $subject
      * @return Error|null
      */
     public function getError($subject)

@@ -12,7 +12,7 @@ use Harp\Validate\Error;
 abstract class AbstractValueAssertion extends AbstractAssertion
 {
     /**
-     * @param  object $subject
+     * @param  object     $subject
      * @return Error|null
      */
     public function getError($subject)
@@ -27,7 +27,7 @@ abstract class AbstractValueAssertion extends AbstractAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     abstract public function isValid($value);

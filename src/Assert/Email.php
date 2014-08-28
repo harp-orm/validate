@@ -77,11 +77,6 @@ class Email extends AbstractValueAssertion
     }
 
     /**
-     * @var string
-     */
-    private $message;
-
-    /**
      * @var integer
      */
     private $type;
@@ -102,7 +97,7 @@ class Email extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)

@@ -15,20 +15,23 @@ class Number extends AbstractValueAssertion
     const INTEGER = 1;
     const FLOAT = 2;
 
+    /**
+     * @param  mixed  $value
+     * @return boolean
+     */
     public static function isValidInteger($value)
     {
         return (is_integer($value) or ctype_digit($value));
     }
 
+    /**
+     * @param  mixed  $value
+     * @return boolean
+     */
     public static function isValidFloat($value)
     {
         return is_numeric($value);
     }
-
-    /**
-     * @var string
-     */
-    private $message;
 
     /**
      * @var integer
@@ -58,7 +61,7 @@ class Number extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)
@@ -70,5 +73,7 @@ class Number extends AbstractValueAssertion
             case self::FLOAT:
                 return self::isValidFloat($value);
         }
+
+        return false;
     }
 }

@@ -27,6 +27,7 @@ class RegEx extends AbstractValueAssertion
 
     /**
      * RegEx string, passed to preg_match
+     *
      * @return string
      */
     public function getPattern()
@@ -35,11 +36,11 @@ class RegEx extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)
     {
-        return preg_match($this->pattern, $value);
+        return (bool) preg_match($this->pattern, $value);
     }
 }

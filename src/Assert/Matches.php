@@ -30,6 +30,9 @@ class Matches extends AbstractAssertion
         parent::__construct($name, $message);
     }
 
+    /**
+     * @return string
+     */
     public function getMatches()
     {
         return $this->matches;
@@ -46,7 +49,7 @@ class Matches extends AbstractAssertion
     }
 
     /**
-     * @param  object $subject
+     * @param  object     $subject
      * @return Error|null
      */
     public function getError($subject)

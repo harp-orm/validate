@@ -12,28 +12,43 @@ use Exception;
  */
 class InvalidException extends LogicException
 {
-    public function __construct($subject, $code = 0, Exception $previous = null)
+    /**
+     * @param object    $subject
+     * @param Errors    $errors
+     * @param integer   $code
+     * @param Exception $previous
+     */
+    public function __construct($subject, Errors $errors, $code = 0, Exception $previous = null)
     {
         $this->subject = $subject;
+        $this->errors = $errors;
 
-        parent::__construct("Has errors: {$subject->getErrors()->humanize()}", $code, $previous);
+        parent::__construct("Has errors: {$errors->humanize()}", $code, $previous);
     }
 
     /**
-     * @var ValidateTrait
+     * @var object
      */
     private $subject;
 
     /**
-     * @return ValidateTrait
+     * @var Errors
+     */
+    private $errors;
+
+    /**
+     * @return object
      */
     public function getSubject()
     {
         return $this->subject;
     }
 
+    /**
+     * @return Errors
+     */
     public function getErrors()
     {
-        return $this->subject->getErrors();
+        return $this->errors;
     }
 }

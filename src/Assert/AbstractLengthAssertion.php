@@ -12,7 +12,7 @@ use Harp\Validate\Error;
 abstract class AbstractLengthAssertion extends AbstractValueAssertion
 {
     /**
-     * @param  string $value
+     * @param  string  $value
      * @return integer
      */
     public static function getValueLength($value)

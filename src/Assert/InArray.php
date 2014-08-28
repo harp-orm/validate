@@ -44,7 +44,7 @@ class InArray extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)

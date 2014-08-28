@@ -99,7 +99,7 @@ class Errors implements Iterator, Countable
     }
 
     /**
-     * @param array $errors
+     * @param Errors $errors
      */
     public function set(Errors $errors)
     {
@@ -167,6 +167,9 @@ class Errors implements Iterator, Countable
         return $this->errors->current();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->humanize();

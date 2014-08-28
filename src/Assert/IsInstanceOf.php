@@ -38,7 +38,7 @@ class IsInstanceOf extends AbstractValueAssertion
     }
 
     /**
-     * @return class
+     * @return string
      */
     public function getClass()
     {
@@ -46,7 +46,7 @@ class IsInstanceOf extends AbstractValueAssertion
     }
 
     /**
-     * @param  mixed $value
+     * @param  mixed   $value
      * @return boolean
      */
     public function isValid($value)
