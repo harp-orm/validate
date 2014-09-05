@@ -102,13 +102,20 @@ new Callback('state', function ($subject, $value) {
 
 __Email__
 
-Assert if the value is not a proper email address. By default it uses ``Email::NORMAL`` - a small and fast regex which should handle most cases.
-If you need to validate unusual email addresses you can use ``Email::STRICT``. It will then use a slower but more comprehensive check.
+Assert if the value is not a proper email address. uses a small and fast regex which should handle most cases.
 
 ```php
 new Email('email_address')
-new Email('email_address', Email::STRICT)
-new Email('email_address', Email::NORMAL, 'custom message')
+new Email('email_address', 'some custom message')
+```
+
+__EmailStrict__
+
+Assert if the value is not a proper email address. Uses a slower but more comprehensive check thane ``Email``.
+
+```php
+new EmailStrict('email_address')
+new EmailStrict('email_address', 'some custom message')
 ```
 
 __GreaterThan__
@@ -201,14 +208,22 @@ new Matches('password', 'password_confirmation')
 new Matches('password', 'password_confirmation', 'some custom message')
 ```
 
-__Number__
+__IsInteger__
 
-Assert that the value is a number. By default only integers are allowed (``Number::INTEGER``). If you want to check for floats you can use ``Number::FLOAT``.
+Assert that the value is a integer number.
 
 ```php
-new Number('quantity'),
-new Number('frequency', Number::FLOAT),
-new Number('quantity', Number::INTEGER, 'some custom message'),
+new IsInteger('quantity')
+new IsInteger('quantity', 'some custom message')
+```
+
+__IsFloat__
+
+Assert that the value is a float number.
+
+```php
+new IsFloat('frequency')
+new IsFloat('frequency', 'some custom message')
 ```
 
 __Present__
@@ -216,8 +231,8 @@ __Present__
 Assert if the value is empty
 
 ```php
-new Present('title'),
-new Present('title', 'some custom message if needed'),
+new Present('title')
+new Present('title', 'some custom message if needed')
 ```
 
 __RegEx__
@@ -225,20 +240,73 @@ __RegEx__
 Assert that the value matches a given regex. Passed directly to ``preg_match()``
 
 ```php
-new RegEx('card_number', '/\d{20}/'),
-new RegEx('card_number', '/\d{20}/', 'some custom message'),
+new RegEx('card_number', '/\d{20}/')
+new RegEx('card_number', '/\d{20}/', 'some custom message')
 ```
 
 __URL__
 
-Assert if the value is a valid url. By default it uses ``URL::NORMAL`` which converts all UTF related charecters in the url to their proper encoding. It also will convert non-ASCII domain names, using "idn" if the "intl" extension is available. This is similar to what browsers normally do.
-If you want to use a more strict definition or URLs, stright from the RFC - you can use ``URL::STRICT`` - then it directly uses php's ``filter_var()`` method.
+Assert if the value is a valid url. Converts all UTF related charecters in the url to their proper encoding. It also will convert non-ASCII domain names, using "idn" if the "intl" extension is available. This is similar to what browsers normally do.
 
 ```php
-new URL('website'),
-new URL('website', URL::STRICT),
-new URL('website', URL::NORMAL, 'some custom message'),
+new URL('website')
+new URL('website', 'some custom message')
 ```
+
+__URLStrict__
+
+Assert if the value is a valid url. Uses php's ``filter_var()`` method.
+
+```php
+new URLStrict('website')
+new URLStrict('website', 'some custom message')
+```
+
+AssertsTrait
+------------
+
+This trait gives you the ability to easily add assertions to another object.
+
+```php
+class TestConfig {
+    use AssertsTrait;
+}
+
+$config = new TestConfig();
+
+$config
+    ->assertPresent('name')
+    ->assertURL('homepage', 'must have a valid homepage');
+
+// Return the Asserts object
+$config->getAsserts();
+```
+
+Here are all the methods added by this trait.
+
+Method                                                | Description
+------------------------------------------------------|--------------------------------------------------
+__getAsserts__()                                      | Get the Asserts object
+__addAssert__(AbstractAssertion)                      | Add arbitrary asserts
+__assertCallback__($name, $message)                   | Add an Assert\Callback object
+__assertEmail__($name, $message)                      | Add an Assert\Email object
+__assertEmailStrict__($name, $message)                | Add an Assert\EmailStrict object
+__assertGreaterThan__($name, $value, $message)        | Add an Assert\GreaterThan object
+__assertInArray__($name, $array, $message)            | Add an Assert\InArray object
+__assertIP__($name, $message)                         | Add an Assert\IP object
+__assertIsInteger__($name, $message)                  | Add an Assert\IsInteger object
+__assertIsInstanceOf__($name, $class, $message)       | Add an Assert\IsInstanceOf object
+__assertIsFloat__($name, $message)                    | Add an Assert\IsFloat object
+__assertLengthBetween__($name, $min, $max, $message)  | Add an Assert\LengthBetween object
+__assertLengthEquals__($name, $length, $message)      | Add an Assert\LengthEquals object
+__assertLengthGreaterThan__($name, $length, $message) | Add an Assert\LengthGreaterThan object
+__assertLengthLessThan__($name, $length, $message)    | Add an Assert\LengthLessThan object
+__assertLessThan__($name, $value, $message)           | Add an Assert\LessThan object
+__assertMatches__($name, $property, $message)         | Add an Assert\Matches object
+__assertPresent__($name, $message)                    | Add an Assert\Present object
+__assertRegEx__($name, $pattern, $message)            | Add an Assert\RegEx object
+__assertURL__($name, $message)                        | Add an Assert\URL object
+__assertURLStrict__($name, $message)                  | Add an Assert\URLStrict object
 
 ## License
 
