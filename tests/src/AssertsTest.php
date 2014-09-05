@@ -74,7 +74,7 @@ class AssertsTest extends AbstractTestCase
 
         $asserts = new Asserts(array(
             new Assert\Present('user_email'),
-            new Assert\Email('user_email', Assert\Email::STRICT),
+            new Assert\Email('user_email'),
             new Assert\URL('subscribe_url'),
             new Assert\IP('subscribe_ip'),
         ));
@@ -108,7 +108,7 @@ class AssertsTest extends AbstractTestCase
     public function testOnlyFor()
     {
         $assert1 = new Assert\Present('user_email');
-        $assert2 = new Assert\Email('user_email', Assert\Email::STRICT);
+        $assert2 = new Assert\Email('user_email');
         $assert3 = new Assert\URL('subscribe_url');
         $assert4 = new Assert\IP('subscribe_ip');
 

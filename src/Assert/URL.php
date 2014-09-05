@@ -90,56 +90,13 @@ class URL extends AbstractValueAssertion
         return self::buildUrl($parts);
     }
 
-    const NORMAL = 1;
-    const STRICT = 2;
-
-    /**
-     * @var integer
-     */
-    private $type;
-
     /**
      * @param strubg  $name
-     * @param integer $type URL::NORMAL or URL::STRICT
      * @param string  $message
      */
-    public function __construct($name, $type = URL::NORMAL, $message = ':name should be a valid URL address')
+    public function __construct($name, $message = ':name should be a valid URL address')
     {
-        $this->type = $type;
-
         parent::__construct($name, $message);
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isStrict()
-    {
-        return $this->type == self::STRICT;
-    }
-
-    /**
-     * Convert utf parts of url and then check if its valid
-     *
-     * @param  string  $url
-     * @return boolean
-     */
-    public static function isValidNormal($url)
-    {
-        $url = self::convertUtfUrl($url);
-
-        return self::isValidStrict($url);
-    }
-
-    /**
-     * Check url against the RFC directly, using php's built in filter_var
-     *
-     * @param  string  $url
-     * @return boolean
-     */
-    public static function isValidStrict($url)
-    {
-        return filter_var($url, FILTER_VALIDATE_URL) !== false;
     }
 
     /**
@@ -148,6 +105,8 @@ class URL extends AbstractValueAssertion
      */
     public function isValid($value)
     {
-        return $this->isStrict() ? self::isValidStrict($value) : self::isValidNormal($value);
+        $url = self::convertUtfUrl($value);
+
+        return filter_var($url, FILTER_VALIDATE_URL) !== false;
     }
 }

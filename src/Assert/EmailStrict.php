@@ -12,7 +12,7 @@ namespace Harp\Validate\Assert;
  * @copyright (c) 2014 Clippings Ltd.
  * @license   http://spdx.org/licenses/BSD-3-Clause
  */
-class Email extends AbstractValueAssertion
+class EmailStrict extends AbstractValueAssertion
 {
     public function __construct($name, $message = ':name should be a valid email')
     {
@@ -25,28 +25,19 @@ class Email extends AbstractValueAssertion
      */
     public function isValid($value)
     {
-        $expression =
-            '/^
+        $qtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+        $dtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+        $atom  = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+        $pair  = '\\x5c[\\x00-\\x7f]';
 
-            [-_a-z0-9\'+*$^&%=~!?{}]++
-            (?:\.[-_a-z0-9\'+*$^&%=~!?{}]+)*+
+        $domainLiteral = "\\x5b($dtext|$pair)*\\x5d";
+        $quotedString  = "\\x22($qtext|$pair)*\\x22";
+        $subdomain     = "($atom|$domainLiteral)";
+        $word           = "($atom|$quotedString)";
+        $domain         = "$subdomain(\\x2e$subdomain)*";
+        $localPart     = "$word(\\x2e$word)*";
 
-            # domain part
-            @
-
-            # host name
-            (?:(?![-.])[-a-z0-9.]+(?<![-.])
-
-            # top level
-            \.
-
-            [a-z]{2,6}
-            | # or
-            \d{1,3}
-
-            (?:\.\d{1,3}){3})
-
-            $/iDx';
+        $expression     = "/^$localPart\\x40$domain$/D";
 
         return (bool) preg_match($expression, $value);
     }
